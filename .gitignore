@@ -1,2 +1,7 @@
 # graphify generated knowledge-graph output (regenerated locally / on commit)
 graphify-out/
+
+# Secrets — never commit real credentials
+.env
+.env.*
+!.env.example
