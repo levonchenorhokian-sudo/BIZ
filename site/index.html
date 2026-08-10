@@ -29,10 +29,10 @@ a:hover { color: var(--color-accent); }
 <div style="--leading:24px;--half:12px;--edge:clamp(20px,5vw,72px);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text)">
 
   <nav class="nav" style="position:sticky;top:0;z-index:20;background:var(--color-bg);border-bottom:1px solid var(--color-divider);padding-inline:max(var(--edge),calc((100% - 1200px) / 2 + var(--edge)))">
-    <span class="nav-brand">{{ brandName }}</span>
+    <span class="nav-brand" style="font-size:26px;letter-spacing:0.03em">{{ brandName }}</span>
     <a href="#about">About</a>
     <a href="#process">How we work</a>
-    <a href="#build">Build your own</a>
+    <a class="btn" href="products.html" style="text-decoration:none;font-weight:600;background:var(--color-accent-200);border:1px solid var(--color-accent-300);color:var(--color-accent-800)" style-hover="background:var(--color-accent-300);color:var(--color-accent-900)">Products</a>
     <a class="btn btn-primary" href="#build" style="text-decoration:none;color:var(--color-bg)" style-hover="color:var(--color-bg);background:var(--color-accent-600)">Get a quote</a>
   </nav>
 
@@ -102,27 +102,27 @@ a:hover { color: var(--color-accent); }
       <span style="display:block;font-size:13px;line-height:var(--half);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 var(--half)">How we work</span>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:calc(1.5 * var(--leading)) 0;margin-top:calc(3 * var(--leading))">
         <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Consultation</span>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Consultation</span>
           <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
           <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
         </div>
         <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Quotation</span>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Quotation</span>
           <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
           <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
         </div>
         <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Sample</span>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Sample</span>
           <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
           <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
         </div>
         <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Production</span>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Production</span>
           <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
           <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
         </div>
         <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Delivery</span>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Delivery</span>
           <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
           <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
         </div>
@@ -500,7 +500,7 @@ a:hover { color: var(--color-accent); }
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Merchandize&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;inquiries@merchandize.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;96170887022&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;garmentTypes&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;fabrics&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;colorOptions&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;brandingMethods&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Karrgo&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;inquiries@karrgo.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;96170887022&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;garmentTypes&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;fabrics&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;colorOptions&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;brandingMethods&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;}}">
 class Component extends DCLogic {
   lineSeq = 1;
   formRef = React.createRef();
@@ -674,7 +674,7 @@ class Component extends DCLogic {
     if (missing.length) { this.setState({ missing }); return; }
 
     const spec = this.buildQuickSpec(fd);
-    const to = this.props.contactEmail || 'inquiries@merchandize.com';
+    const to = this.props.contactEmail || 'inquiries@karrgo.com';
     const subject = 'Uniform inquiry ' + this.state.refNo + ' for ' + g('qBusiness');
     window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(spec);
     this.setState({ submitted: true, missing: [], spec, copied: false });
@@ -695,7 +695,7 @@ class Component extends DCLogic {
     if (missing.length) { this.setState({ missing }); return; }
 
     const spec = this.buildSpec(fd);
-    const to = this.props.contactEmail || 'inquiries@merchandize.com';
+    const to = this.props.contactEmail || 'inquiries@karrgo.com';
     const subject = 'Uniform inquiry ' + this.state.refNo + ' for ' + g('company');
     window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(spec);
     this.setState({ submitted: true, missing: [], spec, copied: false });
@@ -737,8 +737,8 @@ class Component extends DCLogic {
     }));
 
     return {
-      brandName: p.brandName || 'Merchandize',
-      contactEmail: p.contactEmail || 'inquiries@merchandize.com',
+      brandName: p.brandName || 'Karrgo',
+      contactEmail: p.contactEmail || 'inquiries@karrgo.com',
       frameRef: this.frameRef,
       onFrameLoad: this.onFrameLoad,
       prevBrand: () => this.stepBrand(-1),

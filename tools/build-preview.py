@@ -137,13 +137,20 @@ def build() -> None:
     )
     print("  3D iframe     " + ("-> still image" if doc != before else "! not matched"))
 
-    # 5. Inject fonts + a preview marker as the first thing in <head>.
+    # 5. Inject fonts + a title as the first thing in <head>. The brand is read
+    #    from the page's own data-props so a rename in the design tool carries
+    #    through to the artifact title instead of going stale here.
+    brand = "Site"
+    mb = re.search(r'&quot;brandName&quot;:\{[^}]*?&quot;default&quot;:&quot;([^&]+)&quot;', doc)
+    if mb:
+        brand = mb.group(1)
     css = font_css()
     doc = doc.replace(
         "<head>",
-        "<head>\n<title>Merchandize — site preview</title>\n<style>\n" + css + "\n</style>",
+        f"<head>\n<title>{brand} — site preview</title>\n<style>\n" + css + "\n</style>",
         1,
     )
+    print(f"  title         {brand} — site preview")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(doc, encoding="utf-8")

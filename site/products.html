@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./vendor/react.production.min.js"></script>
+<script src="./vendor/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="_ds/industry-dc0edfe4-77d5-43e5-b376-c7160df47409/styles.css">
+<script src="_ds/industry-dc0edfe4-77d5-43e5-b376-c7160df47409/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; text-wrap: pretty; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+a { color: var(--color-accent-700); text-decoration: none; }
+a:hover { color: var(--color-accent); }
+.btn-primary, .btn-primary:hover, .btn-primary:active,
+.nav a.btn-primary, .nav a.btn-primary:hover { color: var(--color-bg); }
+.photo-track { scrollbar-width: none; -ms-overflow-style: none; }
+.photo-track::-webkit-scrollbar { display: none; }
+</style>
+</helmet>
+
+<div style="--leading:24px;--half:12px;--edge:clamp(20px,5vw,72px);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text);min-height:100vh">
+
+  <nav class="nav" style="position:sticky;top:0;z-index:20;background:var(--color-bg);border-bottom:1px solid var(--color-divider);padding-inline:max(var(--edge),calc((100% - 1200px) / 2 + var(--edge)))">
+    <a class="nav-brand" href="index.html" style="color:inherit;font-size:26px;letter-spacing:0.03em">{{ brandName }}</a>
+    <a href="Uniform Inquiry.dc.html#about">About</a>
+    <a href="Uniform Inquiry.dc.html#process">How we work</a>
+    <a class="btn" href="products.html" style="text-decoration:none;font-weight:600;background:var(--color-accent-200);border:1px solid var(--color-accent-300);color:var(--color-accent-800)" style-hover="background:var(--color-accent-300);color:var(--color-accent-900)">Products</a>
+    <a class="btn btn-primary" href="Uniform Inquiry.dc.html#build" style="text-decoration:none;color:var(--color-bg)" style-hover="color:var(--color-bg);background:var(--color-accent-600)">Get a quote</a>
+  </nav>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 var(--edge)">
+
+    <section style="padding:calc(2.5 * var(--leading)) 0 calc(1.5 * var(--leading))">
+      <h1 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(38px,6vw,74px);line-height:1.04;letter-spacing:0.01em;text-transform:uppercase;margin:0 0 0 -0.048em">Products</h1>
+      <p style="font-size:17px;line-height:var(--leading);max-width:56ch;margin:var(--leading) 0 0">What we make, by trade. Every piece here is customised with your colours and your logo. Pick a category, then send us the ones you want priced.</p>
+    </section>
+
+    <section style="padding:0 0 calc(1.5 * var(--leading))">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-3);padding-bottom:var(--half);border-bottom:1px solid var(--color-divider)">
+        <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-right:var(--half)">Filter</span>
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="3">
+          <button type="button" onClick="{{ f.onPick }}" aria-pressed="{{ f.active }}" style="{{ f.style }}" style-hover="border-color:var(--color-accent);color:var(--color-accent-700)">
+            {{ f.label }}
+            <span style="margin-left:8px;font-variant-numeric:tabular-nums;opacity:0.6">{{ f.count }}</span>
+          </button>
+        </sc-for>
+        <span style="margin-left:auto;font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);font-variant-numeric:tabular-nums">{{ resultLabel }}</span>
+      </div>
+    </section>
+
+    <section style="padding:0 0 calc(2.5 * var(--leading))">
+      <sc-for list="{{ groups }}" as="group" hint-placeholder-count="2">
+        <div style="margin-bottom:calc(2 * var(--leading))">
+          <div style="display:flex;align-items:baseline;gap:var(--space-4);margin-bottom:var(--leading)">
+            <h2 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(22px,2.6vw,30px);line-height:1.1;letter-spacing:0.035em;text-transform:uppercase;margin:0">{{ group.name }}</h2>
+            <span style="flex:1;height:1px;background:var(--color-divider)"></span>
+            <span style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;color:color-mix(in srgb, var(--color-text) 55%, transparent);font-variant-numeric:tabular-nums">{{ group.countLabel }}</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:clamp(18px,2vw,28px)">
+            <sc-for list="{{ group.items }}" as="item" hint-placeholder-count="3">
+              <article class="blueprint" style="display:flex;flex-direction:column;padding:0" style-hover="border-color:var(--color-accent)">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <div style="position:relative;width:100%;aspect-ratio:1;background:var(--color-bg)">
+                  <div class="photo-track" ref="{{ item.trackRef }}" style="display:flex;width:100%;height:100%;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth">
+                    <sc-for list="{{ item.photos }}" as="photo" hint-placeholder-count="0">
+                      <div role="img" aria-label="{{ photo.alt }}" style="flex:0 0 100%;height:100%;scroll-snap-align:start;background-image:url({{ photo.src }});background-size:contain;background-position:center;background-repeat:no-repeat"></div>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ item.noPhoto }}" hint-placeholder-val="{{ false }}">
+                    <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-neutral-600)">Photo to come</span>
+                  </sc-if>
+                  <sc-if value="{{ item.multi }}" hint-placeholder-val="{{ false }}">
+                    <div style="position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:space-between;align-items:center;padding:0 10px;pointer-events:none">
+                      <button type="button" onClick="{{ item.onPrev }}" aria-label="Previous photo" style="pointer-events:auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;padding:0;border:1px solid var(--color-divider);background:var(--color-bg);cursor:pointer;color:color-mix(in srgb, var(--color-text) 72%, transparent)" style-hover="color:var(--color-text);border-color:var(--color-accent)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+                      </button>
+                      <span style="pointer-events:none;padding:2px 8px;border:1px solid var(--color-divider);background:var(--color-bg);font-size:11px;letter-spacing:0.1em;font-variant-numeric:tabular-nums;color:color-mix(in srgb, var(--color-text) 62%, transparent)">{{ item.photoCount }}</span>
+                      <button type="button" onClick="{{ item.onNext }}" aria-label="Next photo" style="pointer-events:auto;width:28px;height:28px;display:flex;align-items:center;justify-content:center;padding:0;border:1px solid var(--color-divider);background:var(--color-bg);cursor:pointer;color:color-mix(in srgb, var(--color-text) 72%, transparent)" style-hover="color:var(--color-text);border-color:var(--color-accent)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+                      </button>
+                    </div>
+                  </sc-if>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:10px var(--space-4) 10px var(--space-6);border-top:1px solid var(--color-divider)">
+                  <h3 style="font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;margin:0">{{ item.name }}</h3>
+                  <a href="{{ item.quoteHref }}" target="_blank" rel="noopener" aria-label="{{ item.askLabel }}" style="flex:none;display:inline-flex;align-items:center;gap:7px;min-height:32px;padding:0 11px;border:1px solid var(--color-divider);font-size:13px;line-height:1;white-space:nowrap;text-decoration:none;color:color-mix(in srgb, var(--color-text) 76%, transparent)" style-hover="background:var(--color-accent-200);border-color:var(--color-accent-300);color:var(--color-accent-800)">
+                    Ask price
+                  </a>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <section style="padding:0 0 calc(2.5 * var(--leading))">
+      <div class="blueprint" style="display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-6);padding:calc(1.25 * var(--leading)) var(--leading)">
+        <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        <div style="flex:1;min-width:280px">
+          <h2 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(21px,2.4vw,28px);line-height:1.12;letter-spacing:0.03em;text-transform:uppercase;margin:0">Don't see it here?</h2>
+          <p style="font-size:15px;line-height:var(--leading);max-width:52ch;margin:8px 0 0;color:color-mix(in srgb, var(--color-text) 76%, transparent)">This is what we stock and customise most. If you need something else, describe it on the quote sheet or send us a photo on WhatsApp and we'll source it.</p>
+        </div>
+        <div style="display:flex;gap:var(--space-3);flex-wrap:wrap">
+          <a class="btn btn-primary" href="Uniform Inquiry.dc.html#build" style="text-decoration:none">Get a quote</a>
+          <a class="btn btn-secondary" href="{{ whatsappHref }}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer style="padding:calc(2 * var(--leading)) 0;border-top:1px solid var(--color-divider);display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:baseline;font-size:13px;line-height:var(--leading);color:color-mix(in srgb, var(--color-text) 70%, transparent)">
+      <span style="font-family:var(--font-heading);font-weight:600;font-size:16px;text-transform:uppercase;letter-spacing:0.04em;color:var(--color-text)">{{ brandName }}</span>
+      <span>Custom uniforms · Lebanon</span>
+      <span style="margin-left:auto">{{ contactEmail }}</span>
+    </footer>
+
+  </div>
+
+  <a href="{{ whatsappHref }}" target="_blank" rel="noopener" aria-label="Message us on WhatsApp" class="btn btn-secondary" style="position:fixed;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,32px);z-index:30;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;text-decoration:none;box-shadow:var(--shadow-md);background:var(--color-bg)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+    WhatsApp
+  </a>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Karrgo&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;inquiries@karrgo.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;96170887022&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;}}">
+class Component extends DCLogic {
+  state = { filter: 'all' };
+
+  tracks = {};
+  // how many times each catalogue entry repeats — 1 once the real range is in
+  dupes = { fnb: 1, bh: 1 };
+
+  // Extra photos: add filenames to `photos` for any item, e.g. photos: ['fnb-polo.png', 'fnb-polo-back.png']
+  scrollTrack(key, dir) {
+    const el = this.tracks[key];
+    if (el) el.scrollBy({ left: dir * el.clientWidth, behavior: 'smooth' });
+  }
+
+  catalogue = [
+    // F&B — clothing first, largest garment down to smallest, then everything else
+    { key: 'fnb-set', cat: 'fnb', name: 'Full uniform sets' },
+    { key: 'fnb-trouser', cat: 'fnb', name: 'Trousers' },
+    { key: 'fnb-polo', cat: 'fnb', name: 'Polos' },
+    { key: 'fnb-tshirt', cat: 'fnb', name: 'T-shirts' },
+    { key: 'fnb-apron', cat: 'fnb', name: 'Aprons' },
+    { key: 'fnb-cap', cat: 'fnb', name: 'Caps' },
+    { key: 'fnb-nametag', cat: 'fnb', name: 'Name tags' },
+    { key: 'fnb-deliverybox', cat: 'fnb', name: 'Delivery boxes' },
+    { key: 'fnb-helmet', cat: 'fnb', name: 'Branded helmets' },
+    { key: 'fnb-bag', cat: 'fnb', name: 'Plastic bags' },
+    { key: 'fnb-boxes', cat: 'fnb', name: 'Takeaway boxes' },
+    { key: 'fnb-placemat', cat: 'fnb', name: 'Placemats' },
+    { key: 'fnb-wrap', cat: 'fnb', name: 'Sandwich wraps' },
+    { key: 'fnb-cup', cat: 'fnb', name: 'Paper cups' },
+    { key: 'fnb-napkin', cat: 'fnb', name: 'Napkins' },
+    { key: 'fnb-coaster', cat: 'fnb', name: 'Coasters' },
+    { key: 'fnb-sticker', cat: 'fnb', name: 'Stickers' },
+    // Beauty & wellness — same rule
+    { key: 'bh-set', cat: 'bh', name: 'Full set uniform' },
+    { key: 'bh-cape', cat: 'bh', name: 'Cutting capes' },
+    { key: 'bh-polo', cat: 'bh', name: 'Polos' },
+    { key: 'bh-apron', cat: 'bh', name: 'Aprons' },
+    { key: 'bh-towel', cat: 'bh', name: 'Towels' },
+    { key: 'bh-spray', cat: 'bh', name: 'Spray bottles' }
+  ];
+
+  categories = { fnb: 'Food & beverage', bh: 'Beauty & wellness' };
+
+  chip(active) {
+    return 'display:inline-flex;align-items:center;min-height:34px;padding:0 14px;font-family:var(--font-body);font-size:14px;line-height:1;cursor:pointer;'
+      + (active
+        ? 'background:var(--color-accent);border:1px solid var(--color-accent);color:var(--color-bg);'
+        : 'background:transparent;border:1px solid var(--color-divider);color:color-mix(in srgb, var(--color-text) 78%, transparent);');
+  }
+
+  renderVals() {
+    const p = this.props;
+    const wa = 'https://wa.me/' + String(p.whatsappNumber || '96170887022').replace(/[^0-9]/g, '')
+      + '?text=' + encodeURIComponent('Hi, I would like a quote on some products.');
+    const f = this.state.filter;
+    const keys = f === 'all' ? ['fnb', 'bh'] : [f];
+    const groups = keys.map(k => {
+      const base = this.catalogue.filter(it => it.cat === k);
+      const expanded = [];
+      const reps = this.dupes[k] || 1;
+      for (const it of base) for (let n = 1; n <= reps; n++) expanded.push({ ...it, key: it.key + '-' + n, file: it.key });
+      const items = expanded.map(it => ({
+        ...it,
+        category: this.categories[it.cat],
+        noPhoto: it.photo === null,
+        photos: it.photo === null ? [] : (it.photos || [(it.file || it.key) + '.png']).map((file, i) => ({
+          src: 'products/' + file,
+          alt: it.name + (i ? ' photo ' + (i + 1) : '')
+        })),
+        multi: (it.photos || []).length > 1,
+        askLabel: 'Ask for a price on ' + it.name.toLowerCase(),
+        photoCount: (it.photos || [1]).length + ' photos',
+        trackRef: el => { this.tracks[it.key] = el; },
+        onPrev: () => this.scrollTrack(it.key, -1),
+        onNext: () => this.scrollTrack(it.key, 1),
+        quoteHref: 'https://wa.me/' + String(p.whatsappNumber || '96170887022').replace(/[^0-9]/g, '')
+          + '?text=' + encodeURIComponent('Hi, can I get more info and a price on your ' + it.name.toLowerCase() + '?')
+      }));
+      return { key: k, name: this.categories[k], items, countLabel: items.length + (items.length === 1 ? ' item' : ' items') };
+    });
+
+    const shown = groups.reduce((n, g) => n + g.items.length, 0);
+    const counts = { all: 0, fnb: 0, bh: 0 };
+    for (const it of this.catalogue) {
+      const reps = this.dupes[it.cat] || 1;
+      counts[it.cat] += reps;
+      counts.all += reps;
+    }
+
+    return {
+      brandName: p.brandName || 'Karrgo',
+      contactEmail: p.contactEmail || 'inquiries@karrgo.com',
+      whatsappHref: wa,
+      groups,
+      resultLabel: shown + (shown === 1 ? ' product' : ' products'),
+      filters: [
+        { key: 'all', label: 'All' },
+        { key: 'fnb', label: 'Food & beverage' },
+        { key: 'bh', label: 'Beauty & wellness' }
+      ].map(x => ({
+        label: x.label,
+        count: counts[x.key],
+        active: f === x.key,
+        style: this.chip(f === x.key),
+        onPick: () => this.setState({ filter: x.key })
+      }))
+    };
+  }
+}
+
+</script>
+</body>
+</html>
