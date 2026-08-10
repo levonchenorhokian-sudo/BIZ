@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./vendor/react.production.min.js"></script>
+<script src="./vendor/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="_ds/industry-dc0edfe4-77d5-43e5-b376-c7160df47409/styles.css">
+<script src="_ds/industry-dc0edfe4-77d5-43e5-b376-c7160df47409/_ds_bundle.js"></script>
+<style>
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; text-wrap: pretty; background: var(--color-bg); color: var(--color-text); font-family: var(--font-body); }
+a { color: var(--color-accent-700); text-decoration: none; }
+a:hover { color: var(--color-accent); }
+.btn-primary, .btn-primary:hover, .btn-primary:active,
+.nav a.btn-primary, .nav a.btn-primary:hover { color: var(--color-bg); }
+</style>
+</helmet>
+
+<div style="--leading:24px;--half:12px;--edge:clamp(20px,5vw,72px);font-family:var(--font-body);background:var(--color-bg);color:var(--color-text)">
+
+  <nav class="nav" style="position:sticky;top:0;z-index:20;background:var(--color-bg);border-bottom:1px solid var(--color-divider);padding-inline:max(var(--edge),calc((100% - 1200px) / 2 + var(--edge)))">
+    <span class="nav-brand">{{ brandName }}</span>
+    <a href="#about">About</a>
+    <a href="#process">How we work</a>
+    <a href="#build">Build your own</a>
+    <a class="btn btn-primary" href="#build" style="text-decoration:none;color:var(--color-bg)" style-hover="color:var(--color-bg);background:var(--color-accent-600)">Get a quote</a>
+  </nav>
+
+  <div style="max-width:1200px;margin:0 auto;padding:0 var(--edge)">
+
+    <section style="padding:calc(3.5 * var(--leading)) 0 calc(2.5 * var(--leading))">
+      <h1 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(44px,7vw,92px);line-height:1.04;letter-spacing:0.01em;text-transform:uppercase;margin:0 0 0 -0.052em">
+        <span style="display:block">Uniforms people</span>
+        <span style="display:block">want to keep wearing.</span>
+      </h1>
+      <p style="font-size:17px;line-height:var(--leading);max-width:58ch;margin:calc(1.5 * var(--leading)) 0 0">Lebanon's number one uniform provider. Custom workwear for restaurants, hotels, clinics, salons, schools and site crews. Tell us what you need on the sheet below and you get a costed quote back, not a phone tag. Or just message us on WhatsApp and ask.</p>
+      <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--leading)">
+        <a class="btn btn-primary" href="#build" style="text-decoration:none">Get a quote
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"></path><path d="m19 12-7 7-7-7"></path></svg>
+        </a>
+        <a class="btn btn-secondary" href="{{ whatsappHref }}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section id="about" style="padding:calc(1.5 * var(--leading)) 0 calc(2.5 * var(--leading))">
+      <span style="display:block;font-size:13px;line-height:var(--half);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 var(--half)">About us</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(24px,3vw,48px);margin-top:calc(var(--leading) + 8px)">
+        <div class="blueprint" style="padding:var(--leading)">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h2 style="font-family:var(--font-heading);font-weight:600;font-size:22px;line-height:var(--leading);letter-spacing:0.02em;text-transform:uppercase;margin:0">What we do</h2>
+          <p style="font-size:15px;line-height:var(--leading);margin:var(--half) 0 0;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Custom uniforms end to end. Design, fabric, embroidery and print, production, delivery. You approve a physical sample before anything is cut.</p>
+        </div>
+        <div class="blueprint" style="padding:var(--leading)">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h2 style="font-family:var(--font-heading);font-weight:600;font-size:22px;line-height:var(--leading);letter-spacing:0.02em;text-transform:uppercase;margin:0">Who we serve</h2>
+          <p style="font-size:15px;line-height:var(--leading);margin:var(--half) 0 0;color:color-mix(in srgb, var(--color-text) 78%, transparent)">Food and beverage, hospitality, healthcare, beauty, education, security and retail. From a ten-person café to a full hotel floor.</p>
+        </div>
+        <div class="blueprint" style="padding:var(--leading)">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <h2 style="font-family:var(--font-heading);font-weight:600;font-size:22px;line-height:var(--leading);letter-spacing:0.02em;text-transform:uppercase;margin:0">How we're different</h2>
+          <p style="font-size:15px;line-height:var(--leading);margin:var(--half) 0 0;color:color-mix(in srgb, var(--color-text) 78%, transparent)">One point of contact, a written quote, a delivery date we hold to. Your spec stays on file, so a reorder takes one message.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:0 0 calc(2.5 * var(--leading))">
+      <figure style="margin:0">
+        <span class="blueprint" style="display:block;position:relative;height:clamp(340px,46vw,540px)">
+          <iframe ref="{{ frameRef }}" onLoad="{{ onFrameLoad }}" src="mannequin.html" title="A dress form wearing a client t-shirt. Drag to spin, scroll to zoom" style="display:block;width:100%;height:100%;border:0"></iframe>
+          <span style="position:absolute;left:14px;bottom:14px;z-index:2;display:flex;align-items:stretch;border:1px solid var(--color-divider);background:var(--color-neutral-200)">
+            <button type="button" onClick="{{ prevBrand }}" aria-label="Previous client" style="width:34px;height:34px;display:flex;align-items:center;justify-content:center;padding:0;border:0;background:transparent;cursor:pointer;color:color-mix(in srgb, var(--color-text) 72%, transparent)" style-hover="background:var(--color-neutral-300);color:var(--color-text)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+            </button>
+            <span style="display:flex;align-items:center;padding:0 10px;border-left:1px solid var(--color-divider);border-right:1px solid var(--color-divider);font-family:var(--font-heading);font-weight:600;font-size:12px;letter-spacing:0.12em;font-variant-numeric:tabular-nums;color:color-mix(in srgb, var(--color-text) 62%, transparent)">{{ brandCounter }}</span>
+            <button type="button" onClick="{{ nextBrand }}" aria-label="Next client" style="width:34px;height:34px;display:flex;align-items:center;justify-content:center;padding:0;border:0;background:transparent;cursor:pointer;color:color-mix(in srgb, var(--color-text) 72%, transparent)" style-hover="background:var(--color-neutral-300);color:var(--color-text)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+            </button>
+          </span>
+          <span style="position:absolute;right:14px;bottom:14px;z-index:2;display:flex;flex-direction:column;gap:6px;width:132px;padding:8px 9px;border:1px solid var(--color-divider);background:var(--color-bg)">
+            <span style="font-family:var(--font-heading);font-weight:600;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 60%, transparent)">{{ brandLabel }}</span>
+            <image-slot id="{{ brandSlotId }}" shape="rect" fit="contain" style="width:100%;height:46px" placeholder="{{ brandSlotHint }}"></image-slot>
+          </span>
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+        </span>
+      </figure>
+    </section>
+
+    <section id="process" style="padding:0 0 calc(2.5 * var(--leading))">
+      <span style="display:block;font-size:13px;line-height:var(--half);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 var(--half)">How we work</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:calc(1.5 * var(--leading)) 0;margin-top:calc(3 * var(--leading))">
+        <div>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Consultation</span>
+          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
+          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        </div>
+        <div>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Quotation</span>
+          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
+          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        </div>
+        <div>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Sample</span>
+          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
+          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        </div>
+        <div>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Production</span>
+          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
+          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        </div>
+        <div>
+          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-5)">Delivery</span>
+          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
+          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="build" style="padding:calc(1.5 * var(--leading)) 0 calc(2 * var(--leading))">
+      <span style="display:block;font-size:13px;line-height:var(--half);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 var(--half)">Get a quote</span>
+      <div style="height:var(--leading)"></div>
+
+      <sc-if value="{{ notSubmitted }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap;margin-bottom:calc(var(--leading) + 6px)">
+          <div class="seg">
+            <label class="seg-opt"><input type="radio" name="inquiryMode" checked="{{ isQuick }}" onChange="{{ pickQuick }}">Quick inquiry</label>
+            <label class="seg-opt"><input type="radio" name="inquiryMode" checked="{{ isDetailed }}" onChange="{{ pickDetailed }}">Full spec sheet</label>
+          </div>
+          <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 65%, transparent)">{{ modeNote }}</span>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ quickVisible }}" hint-placeholder-val="{{ true }}">
+        <form ref="{{ quickRef }}" onSubmit="{{ submitQuick }}">
+          <div class="blueprint" style="padding:0">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+            <header style="display:flex;flex-wrap:wrap;align-items:stretch;border-bottom:1px solid var(--color-divider)">
+              <span style="flex:1;min-width:16ch;padding:var(--half) var(--leading);font-size:13px;line-height:var(--leading);letter-spacing:0.08em;text-transform:uppercase;font-weight:600">Quick inquiry</span>
+              <span style="padding:var(--half) var(--leading);border-left:1px solid var(--color-divider);white-space:nowrap;font-size:13px;line-height:var(--leading);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;font-variant-numeric:tabular-nums;color:color-mix(in srgb, var(--color-text) 70%, transparent)">{{ refNo }}</span>
+              <span style="padding:var(--half) var(--leading);border-left:1px solid var(--color-divider);white-space:nowrap;font-size:13px;line-height:var(--leading);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">Under a minute</span>
+            </header>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--space-6);padding:var(--leading)">
+              <div class="field"><label for="q-name">Your name *</label><input class="input" id="q-name" name="qName" type="text" placeholder="Who we reply to"></div>
+              <div class="field"><label for="q-business">Business name *</label><input class="input" id="q-business" name="qBusiness" type="text" placeholder="Your company"></div>
+              <div class="field"><label for="q-phone">WhatsApp / phone *</label><input class="input" id="q-phone" name="qPhone" type="tel" placeholder="+961 …"></div>
+              <div class="field"><label for="q-email">Email (optional)</label><input class="input" id="q-email" name="qEmail" type="email" placeholder="you@company.com"></div>
+              <div class="field"><label for="q-qty">Quantity *</label>
+                <select class="input" id="q-qty" name="qQty">
+                  <option value="">Select a range</option>
+                  <option value="Under 10 pieces">Under 10 pieces</option>
+                  <option value="10 to 25 pieces">10 to 25 pieces</option>
+                  <option value="26 to 50 pieces">26 to 50 pieces</option>
+                  <option value="51 to 100 pieces">51 to 100 pieces</option>
+                  <option value="101 to 250 pieces">101 to 250 pieces</option>
+                  <option value="251 to 500 pieces">251 to 500 pieces</option>
+                  <option value="More than 500 pieces">More than 500 pieces</option>
+                  <option value="Not sure yet">Not sure yet</option>
+                </select>
+              </div>
+              <div class="field"><label for="q-what">What you need</label>
+                <select class="input" id="q-what" name="qWhat" onChange="{{ onWhatChange }}">
+                  <option value="">Select</option>
+                  <option value="T-shirts">T-shirts</option>
+                  <option value="Polos">Polos</option>
+                  <option value="Shirts">Shirts</option>
+                  <option value="Hoodies &amp; sweatshirts">Hoodies &amp; sweatshirts</option>
+                  <option value="Jackets">Jackets</option>
+                  <option value="Aprons">Aprons</option>
+                  <option value="Chef wear">Chef wear</option>
+                  <option value="Scrubs">Scrubs</option>
+                  <option value="Trousers">Trousers</option>
+                  <option value="Caps &amp; headwear">Caps &amp; headwear</option>
+                  <option value="A full set">A full set</option>
+                  <option value="Other">Other (specify)</option>
+                </select>
+              </div>
+              <sc-if value="{{ whatIsOther }}" hint-placeholder-val="{{ false }}">
+                <div class="field"><label for="q-what-other">Specify what you need *</label><input class="input" id="q-what-other" name="qWhatOther" type="text" placeholder="Tell us what the garment is"></div>
+              </sc-if>
+              <div class="field" style="grid-column:1 / -1"><label for="q-notes">Anything else</label><textarea class="input" id="q-notes" name="qNotes" rows="2" placeholder="Colours, logo, sizes, deadline, whatever you already know" style="min-height:60px"></textarea></div>
+            </div>
+            <div style="padding:0 var(--leading) var(--leading)">
+              <sc-if value="{{ hasMissing }}" hint-placeholder-val="{{ false }}">
+                <p style="margin:0 0 var(--space-4);font-size:14px;line-height:20px;color:var(--color-accent-800);border-left:2px solid var(--color-accent);padding-left:10px">Before sending, we still need: {{ missingText }}</p>
+              </sc-if>
+              <div style="display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap">
+                <button type="submit" class="btn btn-primary">Send inquiry</button>
+                <a class="btn btn-secondary" href="{{ whatsappHref }}" target="_blank" rel="noopener" style="text-decoration:none;display:inline-flex;align-items:center;gap:8px">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+                  Ask on WhatsApp instead
+                </a>
+                <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 65%, transparent)">Rather type than fill a form? Tap the WhatsApp button in the corner.</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </sc-if>
+
+      <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+        <div class="blueprint" style="padding:calc(1.5 * var(--leading)) var(--leading)">
+          <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+          <div style="display:flex;align-items:center;gap:10px;color:var(--color-accent-700)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600">Inquiry ready to send</span>
+          </div>
+          <h2 style="font-family:var(--font-heading);font-weight:600;font-size:clamp(28px,4vw,44px);line-height:1.06;text-transform:uppercase;letter-spacing:0.02em;margin:var(--leading) 0 0">Reference {{ refNo }}</h2>
+          <p style="font-size:16px;line-height:var(--leading);max-width:60ch;margin:var(--half) 0 0">Your email app has opened with the full spec sheet written out. Send it as it is. We reply with a costed quote within two business days.</p>
+          <p style="font-size:15px;line-height:var(--leading);max-width:60ch;margin:var(--leading) 0 0;color:color-mix(in srgb, var(--color-text) 78%, transparent)">One thing email can't carry automatically: <strong>attach your reference images to that email before you send it.</strong> {{ attachNote }}</p>
+          <div style="display:flex;gap:var(--space-3);flex-wrap:wrap;margin-top:var(--leading)">
+            <button type="button" class="btn btn-secondary" onClick="{{ copySpec }}">{{ copyLabel }}</button>
+            <button type="button" class="btn btn-secondary" onClick="{{ printSpec }}">Print the spec sheet</button>
+            <button type="button" class="btn btn-ghost" onClick="{{ reset }}">Start another inquiry</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ formVisible }}" hint-placeholder-val="{{ true }}">
+        <form ref="{{ formRef }}" onSubmit="{{ submit }}">
+          <div class="blueprint" style="padding:0">
+            <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+
+            <header style="display:flex;flex-wrap:wrap;align-items:stretch;border-bottom:1px solid var(--color-divider)">
+              <span style="flex:1;min-width:16ch;padding:var(--half) var(--leading);font-size:13px;line-height:var(--leading);letter-spacing:0.08em;text-transform:uppercase;font-weight:600">Uniform inquiry spec sheet</span>
+              <span style="padding:var(--half) var(--leading);border-left:1px solid var(--color-divider);white-space:nowrap;font-size:13px;line-height:var(--leading);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;font-variant-numeric:tabular-nums;color:color-mix(in srgb, var(--color-text) 70%, transparent)">{{ refNo }}</span>
+              <span style="padding:var(--half) var(--leading);border-left:1px solid var(--color-divider);white-space:nowrap;font-size:13px;line-height:var(--leading);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Rev A</span>
+              <span style="padding:var(--half) var(--leading);border-left:1px solid var(--color-divider);white-space:nowrap;font-size:13px;line-height:var(--leading);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;font-variant-numeric:tabular-nums;color:var(--color-accent-700)">{{ totalLabel }}</span>
+            </header>
+
+            <header style="display:flex;align-items:baseline;gap:10px;padding:var(--half) var(--leading)">
+              <span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">00</span>
+              <h3 style="margin:0;font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:var(--leading);letter-spacing:0.03em;text-transform:uppercase">Your business</h3>
+            </header>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--space-6) var(--space-6);padding:0 var(--leading) var(--leading)">
+              <div class="field"><label for="f-company">Company name *</label><input class="input" id="f-company" name="company" type="text" placeholder="Registered or trading name"></div>
+              <div class="field"><label for="f-industry">Industry</label>
+                <select class="input" id="f-industry" name="industry">
+                  <option value="">Select</option>
+                  <option value="Food &amp; beverage">Food &amp; beverage</option>
+                  <option value="Hospitality">Hospitality</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Beauty &amp; wellness">Beauty &amp; wellness</option>
+                  <option value="Education">Education</option>
+                  <option value="Retail">Retail</option>
+                  <option value="Security &amp; facilities">Security &amp; facilities</option>
+                  <option value="Industrial &amp; logistics">Industrial &amp; logistics</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="field"><label for="f-contact">Your name *</label><input class="input" id="f-contact" name="contact" type="text" placeholder="Who we speak to"></div>
+              <div class="field"><label for="f-role">Your role</label><input class="input" id="f-role" name="role" type="text" placeholder="Owner, GM, HR, procurement…"></div>
+              <div class="field"><label for="f-phone">WhatsApp / phone *</label><input class="input" id="f-phone" name="phone" type="tel" placeholder="+961 …"></div>
+              <div class="field"><label for="f-email">Email</label><input class="input" id="f-email" name="email" type="email" placeholder="you@company.com"></div>
+              <div class="field"><label for="f-city">City / area</label><input class="input" id="f-city" name="city" type="text" placeholder="Beirut, Jounieh, Tripoli…"></div>
+              <div class="field"><label for="f-staff">Staff to outfit</label><input class="input" id="f-staff" name="staff" type="number" min="0" placeholder="Approximate headcount"></div>
+            </div>
+
+            <header style="display:flex;align-items:baseline;gap:10px;padding:var(--half) var(--leading);border-top:1px solid var(--color-divider)">
+              <span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">01</span>
+              <h3 style="margin:0;font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:var(--leading);letter-spacing:0.03em;text-transform:uppercase">What you need</h3>
+              <span style="margin-left:auto;font-size:12px;color:color-mix(in srgb, var(--color-text) 60%, transparent)">One line per department or garment</span>
+            </header>
+            <div style="padding:0 var(--leading) var(--leading)">
+              <div style="display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap;margin-bottom:var(--leading)">
+                <span style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 60%, transparent);margin-right:4px">Start from a typical set</span>
+                <sc-for list="{{ presets }}" as="preset" hint-placeholder-count="6">
+                  <button type="button" class="btn btn-secondary" onClick="{{ preset.onPick }}" style="min-height:30px;padding:4px 10px;font-size:13px">{{ preset.name }}</button>
+                </sc-for>
+              </div>
+
+              <sc-for list="{{ lines }}" as="line" hint-placeholder-count="1">
+                <div class="blueprint" style="padding:var(--half) var(--leading) var(--leading);margin-bottom:calc(var(--leading) + 6px)">
+                  <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:var(--half)">
+                    <span style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);font-variant-numeric:tabular-nums">Line {{ line.no }}</span>
+                    <span style="flex:1;height:1px;background:var(--color-divider)"></span>
+                    <button type="button" class="btn btn-ghost" onClick="{{ line.onRemove }}" style="min-height:26px;padding:2px 8px;font-size:12px" aria-label="Remove this line">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                      Remove
+                    </button>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--space-4) var(--space-6)">
+                    <div class="field"><label>Department / role</label><input class="input" type="text" placeholder="Waitstaff, kitchen, reception…" value="{{ line.role }}" onChange="{{ line.onRole }}"></div>
+                    <div class="field"><label>Garment</label>
+                      <select class="input" value="{{ line.garment }}" onChange="{{ line.onGarment }}" disabled="{{ noGarments }}">
+                        <option value="">{{ garmentPlaceholder }}</option>
+                        <sc-for list="{{ garmentOptions }}" as="opt" hint-placeholder-count="3">
+                          <option value="{{ opt }}">{{ opt }}</option>
+                        </sc-for>
+                      </select>
+                    </div>
+                    <div class="field"><label>Style &amp; fit</label><input class="input" type="text" placeholder="Short sleeve, slim, mandarin collar…" value="{{ line.style }}" onChange="{{ line.onStyle }}"></div>
+                    <div class="field"><label>Fabric</label>
+                      <select class="input" value="{{ line.fabric }}" onChange="{{ line.onFabric }}" disabled="{{ noFabrics }}">
+                        <option value="">{{ fabricPlaceholder }}</option>
+                        <sc-for list="{{ fabricOptions }}" as="opt" hint-placeholder-count="3">
+                          <option value="{{ opt }}">{{ opt }}</option>
+                        </sc-for>
+                      </select>
+                    </div>
+                    <div class="field"><label>Colour</label>
+                      <select class="input" value="{{ line.color }}" onChange="{{ line.onColor }}" disabled="{{ noColors }}">
+                        <option value="">{{ colorPlaceholder }}</option>
+                        <sc-for list="{{ colorOptionList }}" as="opt" hint-placeholder-count="3">
+                          <option value="{{ opt }}">{{ opt }}</option>
+                        </sc-for>
+                      </select>
+                    </div>
+                    <div class="field"><label>Quantity</label><input class="input" type="number" min="0" placeholder="0" value="{{ line.qty }}" onChange="{{ line.onQty }}"></div>
+                  </div>
+                </div>
+              </sc-for>
+
+              <div style="display:flex;align-items:center;gap:var(--space-4);flex-wrap:wrap">
+                <button type="button" class="btn btn-secondary" onClick="{{ addLine }}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                  Add a garment line
+                </button>
+                <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 65%, transparent)">{{ totalLabel }} across {{ lineCountLabel }}</span>
+              </div>
+
+              <div style="margin-top:calc(var(--leading) + 6px)">
+                <span style="display:block;font-size:12px;margin-bottom:6px;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Sizes, which you don't need yet</span>
+                <div class="seg">
+                  <label class="seg-opt"><input type="radio" name="sizing" value="I have a size list" defaultChecked="{{ true }}">I have a size list</label>
+                  <label class="seg-opt"><input type="radio" name="sizing" value="Use a standard distribution">Use a standard spread</label>
+                  <label class="seg-opt"><input type="radio" name="sizing" value="Send us a sizing kit">Send us a sizing kit</label>
+                </div>
+              </div>
+            </div>
+
+            <header style="display:flex;align-items:baseline;gap:10px;padding:var(--half) var(--leading);border-top:1px solid var(--color-divider)">
+              <span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">02</span>
+              <h3 style="margin:0;font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:var(--leading);letter-spacing:0.03em;text-transform:uppercase">Your branding</h3>
+            </header>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--space-6);padding:0 var(--leading) var(--leading)">
+              <div>
+                <span style="display:block;font-size:12px;margin-bottom:6px;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Your logo</span>
+                <label onDragOver="{{ allowDrop }}" onDrop="{{ onDropLogo }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:88px;padding:var(--space-4);border:1px dashed color-mix(in srgb, var(--color-text) 35%, transparent);cursor:pointer;text-align:center" style-hover="border-color:var(--color-accent);color:var(--color-accent-700)">
+                  <input type="file" accept="image/*,.pdf,.ai,.eps,.svg" multiple onChange="{{ onLogoFiles }}" style="display:none">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5"></path><path d="M12 3v12"></path></svg>
+                  <span style="font-size:13px">Drop your logo or browse</span>
+                  <span style="font-size:12px;color:color-mix(in srgb, var(--color-text) 60%, transparent)">Vector preferred: .ai, .eps, .pdf, .svg</span>
+                </label>
+                <sc-if value="{{ hasLogo }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;margin-top:8px">
+                    <sc-for list="{{ logoFiles }}" as="f" hint-placeholder-count="0">
+                      <div style="position:relative;border:1px solid var(--color-divider);aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden">
+                        <div role="img" aria-label="{{ f.name }}" title="{{ f.name }}" style="width:100%;height:100%;background-image:url({{ f.url }});background-size:contain;background-position:center;background-repeat:no-repeat"></div>
+                        <button type="button" onClick="{{ f.onRemove }}" aria-label="Remove file" style="position:absolute;top:0;right:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;background:var(--color-bg);border:1px solid var(--color-divider);border-top:0;border-right:0;cursor:pointer;color:var(--color-text);padding:0">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                        </button>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </div>
+              <div class="field">
+                <label for="f-method">Branding method</label>
+                <select class="input" id="f-method" name="method" disabled="{{ noMethods }}">
+                  <option value="">{{ methodPlaceholder }}</option>
+                  <sc-for list="{{ methodOptions }}" as="opt" hint-placeholder-count="3">
+                    <option value="{{ opt }}">{{ opt }}</option>
+                  </sc-for>
+                </select>
+                <span style="display:block;font-size:12px;margin-top:10px;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Name tags per employee</span>
+                <div class="seg" style="margin-top:6px">
+                  <label class="seg-opt"><input type="radio" name="nametags" value="Yes">Yes</label>
+                  <label class="seg-opt"><input type="radio" name="nametags" value="No" defaultChecked="{{ true }}">No</label>
+                  <label class="seg-opt"><input type="radio" name="nametags" value="Not sure">Not sure</label>
+                </div>
+              </div>
+              <div>
+                <span style="display:block;font-size:12px;margin-bottom:6px;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Where the logo goes</span>
+                <div style="display:flex;flex-wrap:wrap;gap:8px 16px">
+                  <label class="radio"><input type="checkbox" name="placement" value="Left chest"><span class="dot" style="border-radius:0"></span>Left chest</label>
+                  <label class="radio"><input type="checkbox" name="placement" value="Right chest"><span class="dot" style="border-radius:0"></span>Right chest</label>
+                  <label class="radio"><input type="checkbox" name="placement" value="Back"><span class="dot" style="border-radius:0"></span>Back</label>
+                  <label class="radio"><input type="checkbox" name="placement" value="Sleeve"><span class="dot" style="border-radius:0"></span>Sleeve</label>
+                  <label class="radio"><input type="checkbox" name="placement" value="Collar"><span class="dot" style="border-radius:0"></span>Collar</label>
+                  <label class="radio"><input type="checkbox" name="placement" value="Cap"><span class="dot" style="border-radius:0"></span>Cap</label>
+                  <label class="radio"><input type="checkbox" name="placement" value="Apron pocket"><span class="dot" style="border-radius:0"></span>Apron pocket</label>
+                </div>
+              </div>
+            </div>
+
+            <header style="display:flex;align-items:baseline;gap:10px;padding:var(--half) var(--leading);border-top:1px solid var(--color-divider)">
+              <span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">03</span>
+              <h3 style="margin:0;font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:var(--leading);letter-spacing:0.03em;text-transform:uppercase">References</h3>
+              <span style="margin-left:auto;font-size:12px;color:color-mix(in srgb, var(--color-text) 60%, transparent)">Optional, but it makes the quote accurate</span>
+            </header>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--space-6);padding:0 var(--leading) var(--leading)">
+              <div class="blueprint" style="padding:var(--leading)">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">Current uniform</span>
+                <p style="font-size:14px;line-height:20px;margin:6px 0 var(--space-4);color:color-mix(in srgb, var(--color-text) 72%, transparent)">What your team wears today, including what you want to change about it.</p>
+                <label onDragOver="{{ allowDrop }}" onDrop="{{ onDropCurrent }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:88px;padding:var(--space-4);border:1px dashed color-mix(in srgb, var(--color-text) 35%, transparent);cursor:pointer;text-align:center" style-hover="border-color:var(--color-accent);color:var(--color-accent-700)">
+                  <input type="file" accept="image/*" multiple onChange="{{ onCurrentFiles }}" style="display:none">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5"></path><path d="M12 3v12"></path></svg>
+                  <span style="font-size:13px">Drop photos or browse</span>
+                </label>
+                <sc-if value="{{ hasCurrent }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;margin-top:8px">
+                    <sc-for list="{{ currentFiles }}" as="f" hint-placeholder-count="0">
+                      <div style="position:relative;border:1px solid var(--color-divider);aspect-ratio:1;overflow:hidden">
+                        <div role="img" aria-label="{{ f.name }}" title="{{ f.name }}" style="width:100%;height:100%;background-image:url({{ f.url }});background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+                        <button type="button" onClick="{{ f.onRemove }}" aria-label="Remove image" style="position:absolute;top:0;right:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;background:var(--color-bg);border:1px solid var(--color-divider);border-top:0;border-right:0;cursor:pointer;color:var(--color-text);padding:0">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                        </button>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+                <div class="field" style="margin-top:var(--space-4)"><label for="f-current-note">Notes on these</label><input class="input" id="f-current-note" name="currentNote" type="text" placeholder="e.g. same cut, but breathable fabric"></div>
+              </div>
+
+              <div class="blueprint" style="padding:var(--leading)">
+                <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+                <span style="display:block;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700)">Inspiration</span>
+                <p style="font-size:14px;line-height:20px;margin:6px 0 var(--space-4);color:color-mix(in srgb, var(--color-text) 72%, transparent)">Anything you've seen and liked. A screenshot, a competitor, a saved post.</p>
+                <label onDragOver="{{ allowDrop }}" onDrop="{{ onDropInspo }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-height:88px;padding:var(--space-4);border:1px dashed color-mix(in srgb, var(--color-text) 35%, transparent);cursor:pointer;text-align:center" style-hover="border-color:var(--color-accent);color:var(--color-accent-700)">
+                  <input type="file" accept="image/*" multiple onChange="{{ onInspoFiles }}" style="display:none">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m17 8-5-5-5 5"></path><path d="M12 3v12"></path></svg>
+                  <span style="font-size:13px">Drop images or browse</span>
+                </label>
+                <sc-if value="{{ hasInspo }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px;margin-top:8px">
+                    <sc-for list="{{ inspoFiles }}" as="f" hint-placeholder-count="0">
+                      <div style="position:relative;border:1px solid var(--color-divider);aspect-ratio:1;overflow:hidden">
+                        <div role="img" aria-label="{{ f.name }}" title="{{ f.name }}" style="width:100%;height:100%;background-image:url({{ f.url }});background-size:cover;background-position:center;background-repeat:no-repeat"></div>
+                        <button type="button" onClick="{{ f.onRemove }}" aria-label="Remove image" style="position:absolute;top:0;right:0;width:22px;height:22px;display:flex;align-items:center;justify-content:center;background:var(--color-bg);border:1px solid var(--color-divider);border-top:0;border-right:0;cursor:pointer;color:var(--color-text);padding:0">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                        </button>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+                <div class="field" style="margin-top:var(--space-4)"><label for="f-links">Links to Instagram, Pinterest or a website</label><textarea class="input" id="f-links" name="links" rows="2" placeholder="One per line" style="min-height:60px"></textarea></div>
+              </div>
+            </div>
+
+            <header style="display:flex;align-items:baseline;gap:10px;padding:var(--half) var(--leading);border-top:1px solid var(--color-divider)">
+              <span style="font-size:13px;font-weight:600;letter-spacing:0.08em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">04</span>
+              <h3 style="margin:0;font-family:var(--font-heading);font-weight:600;font-size:19px;line-height:var(--leading);letter-spacing:0.03em;text-transform:uppercase">Timing</h3>
+            </header>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--space-6);padding:0 var(--leading) var(--leading)">
+              <div class="field"><label for="f-date">Needed by</label><input class="input" id="f-date" name="neededBy" type="date"></div>
+              <div class="field"><label for="f-budget">Budget per piece (optional)</label><input class="input" id="f-budget" name="budget" type="text" placeholder="A range is fine"></div>
+              <div>
+                <span style="display:block;font-size:12px;margin-bottom:6px;color:color-mix(in srgb, var(--color-text) 70%, transparent)">Order type</span>
+                <div class="seg">
+                  <label class="seg-opt"><input type="radio" name="orderType" value="One-off" defaultChecked="{{ true }}">One-off</label>
+                  <label class="seg-opt"><input type="radio" name="orderType" value="Recurring">Recurring</label>
+                  <label class="seg-opt"><input type="radio" name="orderType" value="Not sure">Not sure</label>
+                </div>
+              </div>
+              <div class="field" style="grid-column:1 / -1"><label for="f-notes">Anything else we should know</label><textarea class="input" id="f-notes" name="notes" rows="3" placeholder="Sizing quirks, previous supplier issues, deadlines, delivery constraints"></textarea></div>
+            </div>
+
+            <div style="border-top:1px solid var(--color-divider);padding:var(--leading)">
+              <sc-if value="{{ hasMissing }}" hint-placeholder-val="{{ false }}">
+                <p style="margin:0 0 var(--space-4);font-size:14px;line-height:20px;color:var(--color-accent-800);border-left:2px solid var(--color-accent);padding-left:10px">Before sending, we still need: {{ missingText }}</p>
+              </sc-if>
+              <div style="display:flex;gap:var(--space-3);align-items:center;flex-wrap:wrap">
+                <button type="submit" class="btn btn-primary">Send this inquiry</button>
+                <button type="button" class="btn btn-secondary" onClick="{{ printSpec }}">Print the sheet</button>
+                <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 65%, transparent)">Goes to {{ contactEmail }} · costed quote back within two business days</span>
+              </div>
+            </div>
+          </div>
+          <p style="font-size:13px;line-height:20px;margin:var(--half) 0 0;color:color-mix(in srgb, var(--color-text) 60%, transparent)">{{ optionsNote }}</p>
+        </form>
+      </sc-if>
+    </section>
+
+    <footer style="padding:calc(2 * var(--leading)) 0 calc(3 * var(--leading));border-top:1px solid var(--color-divider);display:flex;flex-wrap:wrap;gap:var(--space-4) var(--space-6);align-items:baseline;font-size:13px;line-height:var(--leading);color:color-mix(in srgb, var(--color-text) 70%, transparent)">
+      <span style="font-family:var(--font-heading);font-weight:600;font-size:16px;text-transform:uppercase;letter-spacing:0.04em;color:var(--color-text)">{{ brandName }}</span>
+      <span>Custom uniforms · Lebanon</span>
+      <span>{{ contactEmail }}</span>
+    </footer>
+
+  </div>
+
+  <a href="{{ whatsappHref }}" target="_blank" rel="noopener" aria-label="Message us on WhatsApp" class="btn btn-secondary" style="position:fixed;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,32px);z-index:30;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 18px;text-decoration:none;box-shadow:var(--shadow-md);background:var(--color-bg)">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#25d366" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+    WhatsApp
+  </a>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;brandName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Merchandize&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;inquiries@merchandize.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;96170887022&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Brand&quot;},&quot;garmentTypes&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;fabrics&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;colorOptions&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;},&quot;brandingMethods&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Catalogue dropdowns&quot;}}">
+class Component extends DCLogic {
+  lineSeq = 1;
+  formRef = React.createRef();
+  quickRef = React.createRef();
+  frameRef = React.createRef();
+  brands = [
+    { key: 'holy-basil', name: 'Holy Basil, Jounieh', ways: [
+      { key: 'forest', label: 'Forest green', swatch: '#28362f', map: 'tex/shirt-forest.png' },
+      { key: 'sand', label: 'Sand', swatch: '#d7c6af', map: 'tex/shirt-sand.png' }
+    ] },
+    { key: 'client-02', name: 'Client two', ways: [
+      { key: 'slate', label: 'Slate', swatch: '#3c4650', map: null },
+      { key: 'bone', label: 'Bone', swatch: '#e2ded4', map: null }
+    ] }
+  ];
+
+  postBrand(i) {
+    const frame = this.frameRef.current;
+    const brand = this.brands[i];
+    if (frame && frame.contentWindow && brand)
+      frame.contentWindow.postMessage({ type: 'brand', ways: brand.ways }, '*');
+  }
+  onFrameLoad = () => this.postBrand(this.state.brandIndex);
+  stepBrand(dir) {
+    this.setState(s => {
+      const i = (s.brandIndex + dir + this.brands.length) % this.brands.length;
+      this.postBrand(i);
+      return { brandIndex: i };
+    });
+  }
+  presetSets = {
+    'Café': ['Baristas', 'Kitchen', 'Management'],
+    'Restaurant': ['Waitstaff', 'Kitchen', 'Hosts', 'Management'],
+    'Hotel': ['Front desk', 'Housekeeping', 'F&B service', 'Concierge'],
+    'Clinic': ['Doctors', 'Nurses', 'Reception'],
+    'Salon / spa': ['Stylists', 'Assistants', 'Reception'],
+    'School': ['Students', 'Teachers', 'Sports'],
+    'Security': ['Officers', 'Supervisors'],
+    'Retail': ['Floor staff', 'Managers']
+  };
+  state = {
+    what: '',
+    mode: 'quick',
+    brandIndex: 0,
+    lines: [this.blankLine()],
+    files: { current: [], inspo: [], logo: [] },
+    submitted: false,
+    missing: [],
+    copied: false,
+    spec: '',
+    refNo: 'REQ-' + new Date().getFullYear() + '-' + String(Math.floor(1000 + Math.random() * 9000))
+  };
+
+  blankLine() {
+    return { id: this.lineSeq++, role: '', garment: '', style: '', fabric: '', color: '', qty: '' };
+  }
+  parseList(v) {
+    return String(v || '').split(',').map(s => s.trim()).filter(Boolean);
+  }
+  setLine(id, key, value) {
+    this.setState(s => ({ lines: s.lines.map(l => l.id === id ? { ...l, [key]: value } : l) }));
+  }
+  addLine = () => this.setState(s => ({ lines: [...s.lines, this.blankLine()] }));
+  removeLine(id) {
+    this.setState(s => {
+      const next = s.lines.filter(l => l.id !== id);
+      return { lines: next.length ? next : [this.blankLine()] };
+    });
+  }
+  applyPreset(name) {
+    const roles = this.presetSets[name] || [];
+    this.setState({ lines: roles.map(r => ({ ...this.blankLine(), role: r })) });
+  }
+  addFiles(slot, fileList) {
+    const added = Array.from(fileList || []).map(f => ({
+      key: f.name + '-' + f.size + '-' + Math.random().toString(36).slice(2, 7),
+      name: f.name,
+      url: URL.createObjectURL(f)
+    }));
+    if (!added.length) return;
+    this.setState(s => ({ files: { ...s.files, [slot]: [...s.files[slot], ...added] } }));
+  }
+  removeFile(slot, key) {
+    this.setState(s => ({ files: { ...s.files, [slot]: s.files[slot].filter(f => f.key !== key) } }));
+  }
+  onDrop = slot => e => {
+    e.preventDefault();
+    const dt = e.dataTransfer;
+    if (dt && dt.files) this.addFiles(slot, dt.files);
+  };
+  totalPieces() {
+    return this.state.lines.reduce((sum, l) => sum + (parseInt(l.qty, 10) || 0), 0);
+  }
+  fileNames() {
+    const f = this.state.files;
+    return [...f.logo, ...f.current, ...f.inspo].map(x => x.name);
+  }
+
+  buildSpec(fd) {
+    const g = k => String(fd.get(k) || '').trim() || 'Not given';
+    const placements = fd.getAll('placement');
+    const rows = this.state.lines
+      .filter(l => l.role || l.garment || l.qty)
+      .map((l, i) => '  ' + String(i + 1).padStart(2, '0') + ' | ' + [l.role || '-', l.garment || '-', l.style || '-', l.fabric || '-', l.color || '-', (l.qty || '0') + ' pcs'].join(' | '));
+    const names = this.fileNames();
+    return [
+      'UNIFORM INQUIRY ' + this.state.refNo,
+      '',
+      '00 BUSINESS',
+      '  Company: ' + g('company'),
+      '  Industry: ' + g('industry'),
+      '  Contact: ' + g('contact') + ' (' + g('role') + ')',
+      '  WhatsApp / phone: ' + g('phone'),
+      '  Email: ' + g('email'),
+      '  City: ' + g('city'),
+      '  Staff to outfit: ' + g('staff'),
+      '',
+      '01 GARMENT LINES  (role | garment | style | fabric | colour | qty)',
+      rows.length ? rows.join('\n') : '  None',
+      '  TOTAL: ' + this.totalPieces() + ' pieces',
+      '  Sizes: ' + g('sizing'),
+      '',
+      '02 BRANDING',
+      '  Method: ' + g('method'),
+      '  Placements: ' + (placements.length ? placements.join(', ') : 'None'),
+      '  Name tags: ' + g('nametags'),
+      '  Logo files: ' + (this.state.files.logo.length ? this.state.files.logo.map(f => f.name).join(', ') : 'None'),
+      '',
+      '03 REFERENCES',
+      '  Current uniform notes: ' + g('currentNote'),
+      '  Links: ' + g('links').replace(/\n/g, ' , '),
+      '  Images to attach: ' + (names.length ? names.join(', ') : 'None'),
+      '',
+      '04 TIMING',
+      '  Needed by: ' + g('neededBy'),
+      '  Order type: ' + g('orderType'),
+      '  Budget per piece: ' + g('budget'),
+      '  Notes: ' + g('notes')
+    ].join('\n');
+  }
+
+  buildQuickSpec(fd) {
+    const g = k => String(fd.get(k) || '').trim() || 'Not given';
+    const names = this.fileNames();
+    return [
+      'UNIFORM INQUIRY ' + this.state.refNo,
+      '',
+      '  Name: ' + g('qName'),
+      '  Business: ' + g('qBusiness'),
+      '  Email: ' + g('qEmail'),
+      '  WhatsApp / phone: ' + g('qPhone'),
+      '  Quantity: ' + g('qQty'),
+      '  What they need: ' + (g('qWhat') === 'Other' ? (g('qWhatOther') || 'Other, not specified') : g('qWhat')),
+      '  Notes: ' + g('qNotes'),
+      '  Images to attach: ' + (names.length ? names.join(', ') : 'None')
+    ].join('\n');
+  }
+
+  submitQuick = e => {
+    e.preventDefault();
+    const form = this.quickRef.current;
+    if (!form) return;
+    const fd = new FormData(form);
+    const g = k => String(fd.get(k) || '').trim();
+    const missing = [];
+    if (!g('qName')) missing.push('your name');
+    if (!g('qBusiness')) missing.push('your business name');
+    if (!g('qPhone')) missing.push('a WhatsApp or phone number');
+    if (!g('qQty')) missing.push('a quantity range');
+    if (g('qWhat') === 'Other' && !g('qWhatOther')) missing.push('what "other" means');
+    if (missing.length) { this.setState({ missing }); return; }
+
+    const spec = this.buildQuickSpec(fd);
+    const to = this.props.contactEmail || 'inquiries@merchandize.com';
+    const subject = 'Uniform inquiry ' + this.state.refNo + ' for ' + g('qBusiness');
+    window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(spec);
+    this.setState({ submitted: true, missing: [], spec, copied: false });
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  submit = e => {
+    e.preventDefault();
+    const form = this.formRef.current;
+    if (!form) return;
+    const fd = new FormData(form);
+    const g = k => String(fd.get(k) || '').trim();
+    const missing = [];
+    if (!g('company')) missing.push('company name');
+    if (!g('contact')) missing.push('your name');
+    if (!g('phone')) missing.push('a WhatsApp or phone number');
+    if (!this.totalPieces()) missing.push('at least one garment line with a quantity');
+    if (missing.length) { this.setState({ missing }); return; }
+
+    const spec = this.buildSpec(fd);
+    const to = this.props.contactEmail || 'inquiries@merchandize.com';
+    const subject = 'Uniform inquiry ' + this.state.refNo + ' for ' + g('company');
+    window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(spec);
+    this.setState({ submitted: true, missing: [], spec, copied: false });
+    if (typeof window !== 'undefined') window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  copySpec = () => {
+    const text = this.state.spec;
+    if (navigator.clipboard && text) {
+      navigator.clipboard.writeText(text).then(() => {
+        this.setState({ copied: true });
+        setTimeout(() => this.setState({ copied: false }), 2000);
+      });
+    }
+  };
+  printSpec = () => window.print();
+  reset = () => {
+    this.lineSeq = 1;
+    this.setState({
+      lines: [this.blankLine()],
+      files: { current: [], inspo: [], logo: [] },
+      submitted: false,
+      missing: [],
+      spec: '',
+      refNo: 'REQ-' + new Date().getFullYear() + '-' + String(Math.floor(1000 + Math.random() * 9000))
+    });
+  };
+
+  renderVals() {
+    const p = this.props;
+    const garmentOptions = this.parseList(p.garmentTypes);
+    const fabricOptions = this.parseList(p.fabrics);
+    const colorOptionList = this.parseList(p.colorOptions);
+    const methodOptions = this.parseList(p.brandingMethods);
+    const total = this.totalPieces();
+    const names = this.fileNames();
+    const empty = 'To be added';
+    const slotFiles = slot => this.state.files[slot].map(f => ({
+      ...f, onRemove: () => this.removeFile(slot, f.key)
+    }));
+
+    return {
+      brandName: p.brandName || 'Merchandize',
+      contactEmail: p.contactEmail || 'inquiries@merchandize.com',
+      frameRef: this.frameRef,
+      onFrameLoad: this.onFrameLoad,
+      prevBrand: () => this.stepBrand(-1),
+      nextBrand: () => this.stepBrand(1),
+      brandLabel: this.brands[this.state.brandIndex].name,
+      brandSlotId: 'client-logo-' + this.brands[this.state.brandIndex].key,
+      brandSlotHint: this.brands[this.state.brandIndex].name + ' logo',
+      brandCounter: String(this.state.brandIndex + 1).padStart(2, '0') + ' / ' + String(this.brands.length).padStart(2, '0'),
+
+      refNo: this.state.refNo,
+      submitted: this.state.submitted,
+      notSubmitted: !this.state.submitted,
+      modeNote: this.state.mode === 'quick'
+        ? 'Four fields. Enough for us to come back with a price and the right questions.'
+        : 'Garment by garment. The version you fill in when you know exactly what you want.',
+      isQuick: this.state.mode === 'quick',
+      isDetailed: this.state.mode === 'detailed',
+      pickQuick: () => this.setState({ mode: 'quick', missing: [] }),
+      pickDetailed: () => this.setState({ mode: 'detailed', missing: [] }),
+      quickVisible: !this.state.submitted && this.state.mode === 'quick',
+      formVisible: !this.state.submitted && this.state.mode === 'detailed',
+      quickRef: this.quickRef,
+      whatIsOther: this.state.what === 'Other',
+      onWhatChange: e => this.setState({ what: e.target.value }),
+      submitQuick: this.submitQuick,
+      whatsappHref: 'https://wa.me/' + String(p.whatsappNumber || '96170887022').replace(/[^0-9]/g, '')
+        + '?text=' + encodeURIComponent('Hi, I would like a uniform quote. Ref ' + this.state.refNo),
+      totalLabel: total + (total === 1 ? ' piece' : ' pieces'),
+      lineCountLabel: this.state.lines.length + (this.state.lines.length === 1 ? ' line' : ' lines'),
+
+      lines: this.state.lines.map((l, i) => ({
+        ...l,
+        no: String(i + 1).padStart(2, '0'),
+        onRole: e => this.setLine(l.id, 'role', e.target.value),
+        onGarment: e => this.setLine(l.id, 'garment', e.target.value),
+        onStyle: e => this.setLine(l.id, 'style', e.target.value),
+        onFabric: e => this.setLine(l.id, 'fabric', e.target.value),
+        onColor: e => this.setLine(l.id, 'color', e.target.value),
+        onQty: e => this.setLine(l.id, 'qty', e.target.value),
+        onRemove: () => this.removeLine(l.id)
+      })),
+      addLine: this.addLine,
+      presets: Object.keys(this.presetSets).map(name => ({ name, onPick: () => this.applyPreset(name) })),
+
+      garmentOptions, fabricOptions, colorOptionList, methodOptions,
+      noGarments: garmentOptions.length === 0,
+      noFabrics: fabricOptions.length === 0,
+      noColors: colorOptionList.length === 0,
+      noMethods: methodOptions.length === 0,
+      garmentPlaceholder: garmentOptions.length ? 'Select' : empty,
+      fabricPlaceholder: fabricOptions.length ? 'Select' : empty,
+      colorPlaceholder: colorOptionList.length ? 'Select' : empty,
+      methodPlaceholder: methodOptions.length ? 'Select' : empty,
+      optionsNote: (garmentOptions.length && fabricOptions.length)
+        ? 'Every field on this sheet reaches us exactly as you write it.'
+        : 'Draft note: the garment, fabric, colour and branding dropdowns are empty until your catalogue list is loaded in.',
+
+      currentFiles: slotFiles('current'),
+      inspoFiles: slotFiles('inspo'),
+      logoFiles: slotFiles('logo'),
+      hasCurrent: this.state.files.current.length > 0,
+      hasInspo: this.state.files.inspo.length > 0,
+      hasLogo: this.state.files.logo.length > 0,
+      onCurrentFiles: e => { this.addFiles('current', e.target.files); e.target.value = ''; },
+      onInspoFiles: e => { this.addFiles('inspo', e.target.files); e.target.value = ''; },
+      onLogoFiles: e => { this.addFiles('logo', e.target.files); e.target.value = ''; },
+      onDropCurrent: this.onDrop('current'),
+      onDropInspo: this.onDrop('inspo'),
+      onDropLogo: this.onDrop('logo'),
+      allowDrop: e => e.preventDefault(),
+
+      formRef: this.formRef,
+      submit: this.submit,
+      printSpec: this.printSpec,
+      copySpec: this.copySpec,
+      reset: this.reset,
+      copyLabel: this.state.copied ? 'Copied to clipboard' : 'Copy the spec as text',
+      attachNote: names.length ? 'You added: ' + names.join(', ') + '.' : 'You did not add any this time. Send them whenever you have them.',
+      hasMissing: this.state.missing.length > 0,
+      missingText: this.state.missing.join(', ') + '.'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

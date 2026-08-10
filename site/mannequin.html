@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Holy Basil tee — on the form</title>
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.js",
+    "three/addons/controls/OrbitControls.js": "./vendor/three/addons/controls/OrbitControls.js",
+    "three/addons/exporters/OBJExporter.js": "./vendor/three/addons/exporters/OBJExporter.js",
+    "three/addons/exporters/GLTFExporter.js": "./vendor/three/addons/exporters/GLTFExporter.js"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&display=swap">
+<style>
+  html, body { margin: 0; height: 100%; background: #f2f2f3; font-family: "Barlow", system-ui, sans-serif; overflow: hidden; }
+  three-d-stage:not(:defined) { visibility: hidden; }
+  three-d-stage { display: block; width: 100%; height: 100%; }
+  #veil {
+    position: fixed; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, #f2f2f3 55%, transparent); cursor: pointer; transition: opacity 200ms ease;
+  }
+  #veil span {
+    font-family: "Barlow Condensed", system-ui, sans-serif; font-weight: 600; font-size: 15px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: #1d1f20;
+    padding: 9px 16px; border: 1px solid rgba(29,31,32,0.28); background: #f2f2f3;
+  }
+  #veil:hover span { border-color: #5980a6; color: #416180; }
+  #ways {
+    position: fixed; left: 16px; top: 16px; z-index: 6; display: flex; gap: 8px; align-items: center;
+  }
+  #ways b {
+    font-family: "Barlow Condensed", system-ui, sans-serif; font-weight: 600; font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase; color: rgba(29,31,32,0.65); margin-right: 2px;
+  }
+  #ways button {
+    width: 26px; height: 26px; padding: 0; cursor: pointer; border: 1px solid rgba(29,31,32,0.3);
+    background-clip: padding-box; transition: outline-color 120ms ease;
+    outline: 2px solid transparent; outline-offset: 2px;
+  }
+  #ways button:hover { border-color: #5980a6; }
+  #ways button[aria-pressed="true"] { outline-color: #5980a6; }
+  #ways button:focus-visible { outline: 2px solid #5980a6; outline-offset: 2px; }
+</style>
+</head>
+<body>
+<three-d-stage name="holy-basil-tee" background="#f2f2f3" hide-export autorotate></three-d-stage>
+<div id="ways"><b>Colourway</b></div>
+<div id="veil"><span>Click to spin the form</span></div>
+<script src="./three-d-stage.js"></script>
+<script type="module">
+const stage = document.querySelector('three-d-stage');
+const { THREE } = await stage.ready;
+
+const FLAT = 0.72; // torsos are oval in plan, not round
+
+/* ---------- textures ---------- */
+const loader = new THREE.TextureLoader();
+const load = (src, srgb) => {
+  const t = loader.load(src);
+  if (srgb) t.colorSpace = THREE.SRGBColorSpace;
+  t.wrapS = THREE.RepeatWrapping;
+  t.wrapT = THREE.ClampToEdgeWrapping;
+  t.anisotropy = 8;
+  return t;
+};
+const texCache = {};
+const tex = src => texCache[src] || (texCache[src] = load(src, true));
+const bump = load('tex/fabric-noise.png', false);
+bump.wrapT = THREE.RepeatWrapping;
+bump.repeat.set(5, 2.4);
+
+/* ---------- materials ---------- */
+const shirtMat = new THREE.MeshStandardMaterial({
+  map: tex('tex/shirt-forest.png'), bumpMap: bump, bumpScale: 0.0034,
+  roughness: 0.93, metalness: 0, side: THREE.DoubleSide
+});
+shirtMat.name = 'jersey_print';
+const trimMat = shirtMat.clone();          // collar / cuffs / hem — same cloth, read a touch deeper
+trimMat.name = 'jersey_rib';
+trimMat.color = new THREE.Color(0xdcdcdc);
+const seamMat = shirtMat.clone();
+seamMat.name = 'jersey_seam';
+seamMat.color = new THREE.Color(0xc8c8c8);
+
+const canvasMat = new THREE.MeshStandardMaterial({
+  color: 0xd6cebe, roughness: 0.96, metalness: 0.0, bumpMap: bump, bumpScale: 0.0016
+});
+canvasMat.name = 'form_canvas';
+const steelMat = new THREE.MeshStandardMaterial({ color: 0x9aa0a6, roughness: 0.28, metalness: 0.88 });
+steelMat.name = 'stand_steel';
+const woodMat = new THREE.MeshStandardMaterial({ color: 0x6d4a2e, roughness: 0.52, metalness: 0.05 });
+woodMat.name = 'finial_walnut';
+
+/* ---------- helpers ---------- */
+const profileCurve = pts => new THREE.CatmullRomCurve3(
+  pts.map(([r, y]) => new THREE.Vector3(r, y, 0)), false, 'catmullrom', 0.4);
+
+// A soft-bodied revolve: oval cross-section with gentle vertical folds, UV-mapped
+// so u=0.25 is front centre and u=0.75 is back centre (seam under the arm).
+function drapedSurface(controlPts, { segU = 168, segV = 108, flat = FLAT, fold = 1, foldBias = 1.1 } = {}) {
+  const rows = profileCurve(controlPts).getPoints(segV);
+  const lens = [0];
+  for (let j = 1; j < rows.length; j++) lens.push(lens[j - 1] + rows[j].distanceTo(rows[j - 1]));
+  const total = lens[lens.length - 1] || 1;
+
+  const pos = [], uv = [], idx = [];
+  for (let j = 0; j < rows.length; j++) {
+    const v = lens[j] / total;
+    const amp = fold * Math.max(0, (1 - v) * foldBias + 0.14);
+    for (let i = 0; i <= segU; i++) {
+      const u = i / segU;
+      const phi = -Math.PI / 2 + u * Math.PI * 2;
+      const ripple = 1 + amp * (
+        0.028 * Math.sin(5 * phi + 1.7) +
+        0.019 * Math.sin(9 * phi - 0.6) +
+        0.011 * Math.sin(14 * phi + 2.3)
+      ) * (1 + 0.22 * Math.sin(9.5 * v * Math.PI + phi * 2));
+      const r = rows[j].x * ripple;
+      pos.push(r * Math.sin(phi), rows[j].y, r * Math.cos(phi) * flat);
+      uv.push(u, v);
+    }
+  }
+  const stride = segU + 1;
+  for (let j = 0; j < rows.length - 1; j++) {
+    for (let i = 0; i < segU; i++) {
+      const a = j * stride + i, b = a + 1, c = a + stride, d = c + 1;
+      idx.push(a, c, b, b, c, d);
+    }
+  }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  return g;
+}
+
+// push a geometry's UVs into a plain (unprinted) patch of the atlas
+const plainUV = (g, u0, u1, v0, v1) => {
+  const a = g.attributes.uv.array;
+  for (let i = 0; i < a.length; i += 2) {
+    a[i] = u0 + a[i] * (u1 - u0);
+    a[i + 1] = v0 + a[i + 1] * (v1 - v0);
+  }
+  g.attributes.uv.needsUpdate = true;
+  return g;
+};
+const ring = (radius, tube, seg = 56) => plainUV(new THREE.TorusGeometry(radius, tube, 14, seg), 0.02, 0.14, 0.06, 0.30);
+
+const model = new THREE.Group();
+model.name = 'holy_basil_tee_on_form';
+
+/* ---------- the stand ---------- */
+const base = new THREE.Mesh(new THREE.LatheGeometry([
+  [0.000, 0.000], [0.240, 0.000], [0.246, 0.008], [0.244, 0.020],
+  [0.180, 0.030], [0.060, 0.042], [0.030, 0.050], [0.000, 0.052]
+].map(([x, y]) => new THREE.Vector2(x, y)), 72), steelMat);
+base.name = 'stand_base';
+model.add(base);
+
+const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.020, 0.023, 0.74, 36), steelMat);
+pole.name = 'stand_pole';
+pole.position.y = 0.05 + 0.37;
+model.add(pole);
+
+const collarNut = new THREE.Mesh(new THREE.CylinderGeometry(0.036, 0.042, 0.048, 36), steelMat);
+collarNut.name = 'stand_collar';
+collarNut.position.y = 0.755;
+model.add(collarNut);
+
+/* ---------- the dress form ---------- */
+const form = new THREE.Mesh(new THREE.LatheGeometry([
+  [0.000, 0.800], [0.128, 0.804], [0.168, 0.814], [0.180, 0.832],
+  [0.185, 0.868], [0.182, 0.910], [0.171, 0.958], [0.158, 1.012],
+  [0.151, 1.058], [0.157, 1.104], [0.176, 1.164], [0.194, 1.224],
+  [0.203, 1.276], [0.203, 1.320], [0.196, 1.360], [0.185, 1.396],
+  [0.160, 1.426], [0.121, 1.452], [0.087, 1.470], [0.069, 1.488],
+  [0.063, 1.516], [0.061, 1.548], [0.058, 1.562], [0.000, 1.566]
+].map(([x, y]) => new THREE.Vector2(x, y)), 80), canvasMat);
+form.name = 'dress_form';
+form.scale.set(1, 1, FLAT);
+model.add(form);
+
+const finial = new THREE.Mesh(new THREE.SphereGeometry(0.036, 32, 24), woodMat);
+finial.name = 'form_finial';
+finial.scale.set(1, 0.72, 1);
+finial.position.y = 1.578;
+model.add(finial);
+
+/* ---------- the tee ---------- */
+const shirt = new THREE.Mesh(drapedSurface([
+  [0.232, 0.760], [0.236, 0.786], [0.233, 0.842], [0.229, 0.906],
+  [0.226, 0.974], [0.225, 1.044], [0.228, 1.110], [0.233, 1.176],
+  [0.239, 1.240], [0.244, 1.300], [0.246, 1.350], [0.240, 1.396],
+  [0.214, 1.436], [0.168, 1.464], [0.120, 1.482], [0.088, 1.492], [0.079, 1.497]
+]), shirtMat);
+shirt.name = 'tee_body';
+model.add(shirt);
+
+const hemBand = new THREE.Mesh(ring(0.233, 0.0100, 72), trimMat);
+hemBand.name = 'tee_hem';
+hemBand.rotation.x = Math.PI / 2;
+hemBand.position.y = 0.761;
+hemBand.scale.set(1, FLAT, 1);
+model.add(hemBand);
+
+const neckRib = new THREE.Mesh(ring(0.081, 0.0125, 64), trimMat);
+neckRib.name = 'tee_collar_rib';
+neckRib.rotation.x = Math.PI / 2;
+neckRib.position.y = 1.494;
+neckRib.scale.set(1, FLAT, 1);
+model.add(neckRib);
+
+/* ---------- sleeves: short, wide, dropped ---------- */
+const sleeve = side => {
+  const g = new THREE.Group();
+  g.name = side > 0 ? 'sleeve_left' : 'sleeve_right';
+
+  // the inner end is buried in the armhole, so the sleeve grows out of the body
+  const cloth = new THREE.Mesh(
+    plainUV(new THREE.CylinderGeometry(0.112, 0.123, 0.300, 48, 8, true), 0.02, 0.16, 0.10, 0.44),
+    shirtMat);
+  cloth.name = g.name + '_cloth';
+  cloth.position.y = 0.150;
+  g.add(cloth);
+
+  const cuff = new THREE.Mesh(ring(0.112, 0.0105, 44), trimMat);
+  cuff.name = g.name + '_cuff';
+  cuff.rotation.x = Math.PI / 2;
+  cuff.position.y = 0.300;
+  g.add(cuff);
+
+  g.position.set(side * 0.098, 1.332, 0);
+  g.quaternion.setFromUnitVectors(
+    new THREE.Vector3(0, 1, 0),
+    new THREE.Vector3(side * 0.68, -0.73, 0).normalize());
+  g.scale.set(1, 1, 0.94);
+  return g;
+};
+model.add(sleeve(1));
+model.add(sleeve(-1));
+
+stage.setObject(model);
+
+/* ---------- colourways, driven by the parent page's brand carousel ---------- */
+const waysBox = document.getElementById('ways');
+let ways = [
+  { key: 'forest', label: 'Forest green', swatch: '#28362f', map: 'tex/shirt-forest.png' },
+  { key: 'sand', label: 'Sand', swatch: '#d7c6af', map: 'tex/shirt-sand.png' }
+];
+
+const applyWay = w => {
+  const map = w.map ? tex(w.map) : null;
+  const base = new THREE.Color(w.map ? '#ffffff' : (w.swatch || '#cfcfcf'));
+  const set = (mat, k) => {
+    mat.map = map;
+    mat.color.copy(base).multiplyScalar(k);
+    mat.needsUpdate = true;
+  };
+  set(shirtMat, 1);
+  set(trimMat, w.map ? 0.863 : 0.9);
+  set(seamMat, w.map ? 0.784 : 0.82);
+};
+
+const renderWays = () => {
+  waysBox.innerHTML = '<b>Colourway</b>';
+  ways.forEach((w, i) => {
+    const b = document.createElement('button');
+    b.dataset.way = String(i);
+    b.style.background = w.swatch || '#cfcfcf';
+    b.setAttribute('aria-label', w.label || 'Colourway ' + (i + 1));
+    b.setAttribute('aria-pressed', String(i === 0));
+    waysBox.appendChild(b);
+  });
+  waysBox.style.display = ways.length > 1 ? 'flex' : 'none';
+  applyWay(ways[0]);
+};
+renderWays();
+
+waysBox.addEventListener('click', e => {
+  const btn = e.target.closest('button[data-way]');
+  if (!btn) return;
+  applyWay(ways[Number(btn.dataset.way)]);
+  for (const b of waysBox.querySelectorAll('button'))
+    b.setAttribute('aria-pressed', String(b === btn));
+});
+
+window.addEventListener('message', e => {
+  const d = e.data;
+  if (!d || d.type !== 'brand' || !Array.isArray(d.ways) || !d.ways.length) return;
+  ways = d.ways;
+  renderWays();
+});
+if (window.parent !== window) window.parent.postMessage({ type: 'mannequin-ready' }, '*');
+
+const veil = document.getElementById('veil');
+veil.addEventListener('click', () => { veil.style.opacity = '0'; setTimeout(() => veil.remove(), 220); });
+</script>
+</body>
+</html>
