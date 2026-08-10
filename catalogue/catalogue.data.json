@@ -1,0 +1,315 @@
+{
+  "_README": "EDIT PRICES HERE. Every price is the 'from' price in USD for the Essential tier at minimum order quantity. Change a number, save, then run: python3 tools/build-catalogue.py — the PDF is rebuilt. To add a product, copy any {product,...} line. To reorder, move lines. To hide a product, delete its line or set \"hide\": true.",
+
+  "meta": {
+    "brand": "Merchandize",
+    "tagline": "Custom uniforms, packaging & branding",
+    "doc_title": "Product Catalogue & Indicative Pricing",
+    "edition": "Edition 1",
+    "currency": "USD",
+    "region": "Lebanon",
+    "contact_email": "inquiries@merchandize.com",
+    "contact_whatsapp": "+961 70 887 022",
+    "price_disclaimer": "All prices are indicative starting prices in USD, excluding VAT and branding, quoted per piece at the stated minimum order quantity. Final pricing depends on fabric, colour, quantity, branding method and delivery date. Every order is quoted in writing before production.",
+    "validity": "Prices valid 30 days from issue. Fabric and freight movements may require requoting."
+  },
+
+  "tiers": [
+    { "name": "Essential", "desc": "Reliable everyday fabrics. Built for high-turnover teams and tight budgets. The 'from' prices in this catalogue are Essential-tier." },
+    { "name": "Signature", "desc": "Heavier weights, better colour retention, tailored fit. Our most-ordered tier for restaurants and salons that face customers all day." },
+    { "name": "Premium", "desc": "Designer-grade fabrics, lined tailoring, custom trims and woven labels. For flagship venues and brand-led hospitality groups." }
+  ],
+
+  "quantity_breaks": [
+    { "range": "25 – 49", "adjust": "List price" },
+    { "range": "50 – 99", "adjust": "−5%" },
+    { "range": "100 – 249", "adjust": "−10%" },
+    { "range": "250 – 499", "adjust": "−15%" },
+    { "range": "500 +", "adjust": "−20%" }
+  ],
+
+  "branding": {
+    "title": "Branding & Personalisation",
+    "note": "Added per piece, on top of the garment or item price. One-off setup may apply on screen print and woven labels.",
+    "items": [
+      { "product": "Embroidery — logo up to 5,000 stitches", "moq": 25, "from": 1.2 },
+      { "product": "Embroidery — large or multi-position", "moq": 25, "from": 2.5 },
+      { "product": "Screen print — 1 colour", "moq": 50, "from": 0.7 },
+      { "product": "Screen print — multi-colour", "moq": 50, "from": 1.6 },
+      { "product": "DTF transfer — full colour", "moq": 25, "from": 1.4 },
+      { "product": "Sublimation — all-over print", "moq": 50, "from": 3.5 },
+      { "product": "Heat-transfer vinyl — names & numbers", "moq": 10, "from": 1.1 },
+      { "product": "Woven label — neck or side seam", "moq": 100, "from": 0.35 },
+      { "product": "Rubber / PVC patch", "moq": 100, "from": 1.3 },
+      { "product": "Leather-look patch", "moq": 100, "from": 1.8 }
+    ]
+  },
+
+  "categories": [
+    {
+      "id": "fnb",
+      "name": "Food & Beverage",
+      "blurb": "Restaurants, cafés, bakeries, fast food, catering, hotels, bars and beach clubs. Uniforms for every station, plus the packaging, tabletop and signage that carry your brand past the front door.",
+      "sections": [
+        {
+          "name": "Front of house",
+          "items": [
+            { "product": "T-shirt — cotton / cotton-blend", "range": "Essential – Premium", "moq": 25, "from": 4.5 },
+            { "product": "Polo shirt — piqué, tipped collar option", "range": "Essential – Premium", "moq": 25, "from": 8.0 },
+            { "product": "Formal shirt — long or short sleeve", "range": "Essential – Premium", "moq": 20, "from": 12.0 },
+            { "product": "Waiter jacket", "range": "Signature – Premium", "moq": 15, "from": 18.0 },
+            { "product": "Waiter vest", "range": "Essential – Premium", "moq": 15, "from": 14.0 },
+            { "product": "Service trousers", "range": "Essential – Premium", "moq": 20, "from": 13.0 },
+            { "product": "Service dress", "range": "Signature – Premium", "moq": 15, "from": 22.0 },
+            { "product": "Bib apron — full length", "range": "Essential – Premium", "moq": 25, "from": 7.5 },
+            { "product": "Waist apron — short", "range": "Essential – Premium", "moq": 25, "from": 5.5 },
+            { "product": "Denim apron", "range": "Signature – Premium", "moq": 20, "from": 12.0 },
+            { "product": "Leather-look apron", "range": "Premium", "moq": 15, "from": 16.0 },
+            { "product": "Tie / bow tie", "range": "Essential – Signature", "moq": 25, "from": 3.5 },
+            { "product": "Neck scarf", "range": "Essential – Signature", "moq": 25, "from": 5.0 },
+            { "product": "Cap / bucket hat", "range": "Essential – Signature", "moq": 25, "from": 4.5 },
+            { "product": "Name badge — pin or magnet", "range": "Essential – Premium", "moq": 10, "from": 2.0 },
+            { "product": "Belt", "range": "Essential – Signature", "moq": 25, "from": 5.0 }
+          ]
+        },
+        {
+          "name": "Kitchen",
+          "items": [
+            { "product": "Chef jacket — short or long sleeve", "range": "Essential – Premium", "moq": 15, "from": 15.0 },
+            { "product": "Chef trousers", "range": "Essential – Premium", "moq": 15, "from": 12.0 },
+            { "product": "Kitchen T-shirt", "range": "Essential – Signature", "moq": 25, "from": 4.5 },
+            { "product": "Chef hat / skull cap", "range": "Essential – Signature", "moq": 25, "from": 2.5 },
+            { "product": "Bandana", "range": "Essential", "moq": 25, "from": 2.0 },
+            { "product": "Kitchen apron — heavy duty", "range": "Essential – Premium", "moq": 25, "from": 7.0 },
+            { "product": "Hairnets — pack of 100", "range": "Essential", "moq": 10, "from": 3.5 },
+            { "product": "Beard covers — pack of 100", "range": "Essential", "moq": 10, "from": 4.0 },
+            { "product": "Oven gloves", "range": "Essential – Signature", "moq": 10, "from": 6.5 },
+            { "product": "Heat-resistant gloves", "range": "Signature", "moq": 10, "from": 9.0 },
+            { "product": "Sleeve protectors — pair", "range": "Essential", "moq": 20, "from": 3.5 }
+          ]
+        },
+        {
+          "name": "Delivery",
+          "items": [
+            { "product": "Branded T-shirt / polo", "range": "Essential – Signature", "moq": 25, "from": 4.5 },
+            { "product": "Delivery jacket", "range": "Signature – Premium", "moq": 15, "from": 22.0 },
+            { "product": "Rain jacket", "range": "Essential – Signature", "moq": 15, "from": 18.0 },
+            { "product": "Reflective vest", "range": "Essential", "moq": 20, "from": 6.0 },
+            { "product": "Insulated delivery bag", "range": "Essential – Signature", "moq": 10, "from": 14.0 },
+            { "product": "Thermal delivery box", "range": "Signature", "moq": 5, "from": 28.0 }
+          ]
+        },
+        {
+          "name": "Management & reception",
+          "items": [
+            { "product": "Two-piece suit", "range": "Signature – Premium", "moq": 10, "from": 95.0 },
+            { "product": "Blazer", "range": "Signature – Premium", "moq": 10, "from": 55.0 },
+            { "product": "Formal shirt / blouse", "range": "Essential – Premium", "moq": 20, "from": 12.0 },
+            { "product": "Corporate dress", "range": "Signature – Premium", "moq": 15, "from": 22.0 },
+            { "product": "Branded outer jacket", "range": "Signature – Premium", "moq": 15, "from": 32.0 }
+          ]
+        },
+        {
+          "name": "Tabletop & guest-facing",
+          "items": [
+            { "product": "Menu cover — leather-look, wood or acrylic", "range": "Essential – Premium", "moq": 10, "from": 9.0 },
+            { "product": "Bill folder / check presenter", "range": "Essential – Premium", "moq": 10, "from": 7.0 },
+            { "product": "Table number / reservation sign", "range": "Essential – Premium", "moq": 10, "from": 3.0 },
+            { "product": "QR-code stand", "range": "Essential – Signature", "moq": 20, "from": 4.5 },
+            { "product": "Serving tray", "range": "Essential – Premium", "moq": 10, "from": 9.5 },
+            { "product": "Bread basket", "range": "Essential – Signature", "moq": 20, "from": 6.0 },
+            { "product": "Napkin / cutlery holder", "range": "Essential – Premium", "moq": 20, "from": 5.5 },
+            { "product": "Tablecloth", "range": "Essential – Premium", "moq": 20, "from": 14.0 },
+            { "product": "Table runner", "range": "Essential – Premium", "moq": 20, "from": 7.0 },
+            { "product": "Chair cover", "range": "Essential – Signature", "moq": 25, "from": 8.0 },
+            { "product": "Cloth napkin", "range": "Essential – Premium", "moq": 50, "from": 2.2 },
+            { "product": "Branded placemat / table mat", "range": "Essential – Signature", "moq": 100, "from": 2.5 },
+            { "product": "Coaster", "range": "Essential – Signature", "moq": 250, "from": 0.35 },
+            { "product": "Cutlery pocket — printed paper", "range": "Essential", "moq": 1000, "from": 0.12 }
+          ]
+        },
+        {
+          "name": "Food packaging",
+          "items": [
+            { "product": "Burger / sandwich box", "range": "Essential – Signature", "moq": 1000, "from": 0.14 },
+            { "product": "Sandwich & greaseproof paper", "range": "Essential", "moq": 2000, "from": 0.04 },
+            { "product": "Fries box / cone", "range": "Essential – Signature", "moq": 1000, "from": 0.09 },
+            { "product": "Fried-chicken box / bucket", "range": "Essential – Signature", "moq": 1000, "from": 0.22 },
+            { "product": "Pizza box", "range": "Essential – Signature", "moq": 500, "from": 0.35 },
+            { "product": "Cake / pastry / donut box", "range": "Essential – Premium", "moq": 500, "from": 0.45 },
+            { "product": "Compartment meal box", "range": "Essential – Signature", "moq": 1000, "from": 0.28 },
+            { "product": "Takeaway container — kraft or bagasse", "range": "Essential – Signature", "moq": 1000, "from": 0.16 },
+            { "product": "Sauce cup + lid", "range": "Essential", "moq": 2000, "from": 0.04 },
+            { "product": "Cutlery kit — sachet", "range": "Essential", "moq": 2000, "from": 0.11 }
+          ]
+        },
+        {
+          "name": "Beverage packaging",
+          "items": [
+            { "product": "Paper cup — single or double wall", "range": "Essential – Signature", "moq": 1000, "from": 0.07 },
+            { "product": "Hot-cup sleeve", "range": "Essential", "moq": 1000, "from": 0.03 },
+            { "product": "Cup carrier / holder", "range": "Essential", "moq": 500, "from": 0.12 },
+            { "product": "Lids — coffee, cold drink, dome", "range": "Essential", "moq": 1000, "from": 0.03 },
+            { "product": "Straws & straw covers", "range": "Essential", "moq": 2000, "from": 0.01 },
+            { "product": "Bottle label / neck tag", "range": "Essential – Signature", "moq": 1000, "from": 0.05 },
+            { "product": "Cocktail napkin", "range": "Essential – Signature", "moq": 2000, "from": 0.02 }
+          ]
+        },
+        {
+          "name": "Bags & delivery packaging",
+          "items": [
+            { "product": "Paper / kraft bag", "range": "Essential – Premium", "moq": 500, "from": 0.11 },
+            { "product": "Non-woven reusable bag", "range": "Essential – Signature", "moq": 300, "from": 0.45 },
+            { "product": "Reusable fabric tote", "range": "Signature – Premium", "moq": 100, "from": 2.4 },
+            { "product": "Tamper-evident delivery bag", "range": "Essential", "moq": 1000, "from": 0.09 },
+            { "product": "Thermal delivery bag", "range": "Essential – Signature", "moq": 10, "from": 16.0 },
+            { "product": "Branded sealing tape — roll", "range": "Essential", "moq": 36, "from": 2.2 },
+            { "product": "Delivery / seal sticker", "range": "Essential", "moq": 2000, "from": 0.02 }
+          ]
+        },
+        {
+          "name": "Back of house",
+          "items": [
+            { "product": "Kitchen towel", "range": "Essential – Signature", "moq": 50, "from": 1.8 },
+            { "product": "Cleaning cloth", "range": "Essential", "moq": 100, "from": 0.9 },
+            { "product": "Storage / expiry-date label roll", "range": "Essential", "moq": 20, "from": 3.2 },
+            { "product": "Allergen & prep labels", "range": "Essential", "moq": 1000, "from": 0.03 },
+            { "product": "Disposable apron", "range": "Essential", "moq": 1000, "from": 0.06 },
+            { "product": "Anti-fatigue kitchen mat", "range": "Signature", "moq": 5, "from": 22.0 },
+            { "product": "Locker label / staff tag", "range": "Essential", "moq": 25, "from": 1.2 }
+          ]
+        },
+        {
+          "name": "Catering & events",
+          "items": [
+            { "product": "Buffet label / chafing-dish card", "range": "Essential – Signature", "moq": 25, "from": 1.5 },
+            { "product": "Food-name card", "range": "Essential", "moq": 100, "from": 0.6 },
+            { "product": "Cocktail pick", "range": "Essential", "moq": 2000, "from": 0.03 },
+            { "product": "Disposable plate / bowl / cutlery", "range": "Essential", "moq": 1000, "from": 0.06 },
+            { "product": "Branded banner", "range": "Essential – Signature", "moq": 1, "from": 12.0 },
+            { "product": "Photo backdrop", "range": "Signature", "moq": 1, "from": 65.0 },
+            { "product": "Branded event tent", "range": "Signature – Premium", "moq": 1, "from": 180.0 }
+          ]
+        },
+        {
+          "name": "Branding & marketing",
+          "items": [
+            { "product": "Indoor / outdoor sign", "range": "Essential – Premium", "moq": 1, "from": 35.0 },
+            { "product": "Illuminated light box", "range": "Signature – Premium", "moq": 1, "from": 140.0 },
+            { "product": "Menu board", "range": "Essential – Premium", "moq": 1, "from": 45.0 },
+            { "product": "Roll-up banner", "range": "Essential – Signature", "moq": 1, "from": 55.0 },
+            { "product": "Window / wall / floor sticker", "range": "Essential – Signature", "moq": 5, "from": 6.5 },
+            { "product": "Table tent", "range": "Essential – Signature", "moq": 100, "from": 0.55 },
+            { "product": "Loyalty / gift card", "range": "Essential – Premium", "moq": 500, "from": 0.09 },
+            { "product": "Business card", "range": "Essential – Premium", "moq": 500, "from": 0.04 },
+            { "product": "Flyer / brochure", "range": "Essential – Signature", "moq": 1000, "from": 0.03 },
+            { "product": "QR-code / Wi-Fi sticker", "range": "Essential", "moq": 100, "from": 0.1 },
+            { "product": "Feedback / review card", "range": "Essential", "moq": 500, "from": 0.05 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "beauty",
+      "name": "Beauty & Wellness",
+      "blurb": "Hair salons, barbershops, beauty centres, spas, nail and lash studios, aesthetic and dental clinics. Staff uniforms that photograph well, guest textiles that feel expensive, and the consumables you reorder every month.",
+      "sections": [
+        {
+          "name": "Salon & barbershop",
+          "items": [
+            { "product": "Stylist tunic", "range": "Essential – Premium", "moq": 10, "from": 16.0 },
+            { "product": "Barber jacket", "range": "Signature – Premium", "moq": 10, "from": 18.0 },
+            { "product": "Stylist T-shirt / polo", "range": "Essential – Signature", "moq": 25, "from": 4.5 },
+            { "product": "Utility apron — cutting", "range": "Essential – Premium", "moq": 20, "from": 8.5 },
+            { "product": "Waist apron — tool", "range": "Essential – Signature", "moq": 20, "from": 6.0 },
+            { "product": "Tool pouch / belt", "range": "Signature – Premium", "moq": 10, "from": 11.0 },
+            { "product": "Client cutting cape", "range": "Essential – Premium", "moq": 20, "from": 7.5 },
+            { "product": "Client gown / kimono", "range": "Essential – Premium", "moq": 20, "from": 9.5 },
+            { "product": "Name badge", "range": "Essential – Premium", "moq": 10, "from": 2.0 }
+          ]
+        },
+        {
+          "name": "Spa & wellness",
+          "items": [
+            { "product": "Therapist tunic", "range": "Essential – Premium", "moq": 10, "from": 17.0 },
+            { "product": "Wrap top", "range": "Essential – Premium", "moq": 10, "from": 15.0 },
+            { "product": "Spa trousers", "range": "Essential – Premium", "moq": 10, "from": 13.0 },
+            { "product": "Staff kimono robe", "range": "Signature – Premium", "moq": 10, "from": 24.0 },
+            { "product": "Guest robe — waffle or towelling", "range": "Essential – Premium", "moq": 20, "from": 22.0 },
+            { "product": "Guest slippers", "range": "Essential – Signature", "moq": 100, "from": 2.2 },
+            { "product": "Spa headband", "range": "Essential – Signature", "moq": 50, "from": 1.8 },
+            { "product": "Hand towel", "range": "Essential – Premium", "moq": 50, "from": 1.6 },
+            { "product": "Bath towel", "range": "Essential – Premium", "moq": 50, "from": 4.5 },
+            { "product": "Turban / hair towel", "range": "Essential – Signature", "moq": 50, "from": 3.2 }
+          ]
+        },
+        {
+          "name": "Nail & lash studio",
+          "items": [
+            { "product": "Technician tunic", "range": "Essential – Premium", "moq": 10, "from": 15.0 },
+            { "product": "Short-sleeve smock", "range": "Essential – Signature", "moq": 10, "from": 12.0 },
+            { "product": "Studio apron", "range": "Essential – Signature", "moq": 20, "from": 7.0 },
+            { "product": "Arm sleeves — pair", "range": "Essential", "moq": 25, "from": 3.0 },
+            { "product": "Branded cushion / armrest cover", "range": "Essential – Signature", "moq": 20, "from": 5.5 }
+          ]
+        },
+        {
+          "name": "Aesthetic & dental clinic",
+          "items": [
+            { "product": "Scrub top", "range": "Essential – Premium", "moq": 10, "from": 11.0 },
+            { "product": "Scrub trousers", "range": "Essential – Premium", "moq": 10, "from": 11.0 },
+            { "product": "Lab coat", "range": "Essential – Premium", "moq": 10, "from": 19.0 },
+            { "product": "Clinical tunic", "range": "Essential – Premium", "moq": 10, "from": 15.0 },
+            { "product": "Warm-up jacket", "range": "Signature – Premium", "moq": 10, "from": 21.0 },
+            { "product": "Surgical cap", "range": "Essential – Signature", "moq": 25, "from": 3.5 },
+            { "product": "Patient gown", "range": "Essential – Signature", "moq": 25, "from": 8.0 },
+            { "product": "Clinical clogs", "range": "Signature", "moq": 10, "from": 18.0 }
+          ]
+        },
+        {
+          "name": "Front desk & reception",
+          "items": [
+            { "product": "Blazer", "range": "Signature – Premium", "moq": 10, "from": 48.0 },
+            { "product": "Formal shirt / blouse", "range": "Essential – Premium", "moq": 20, "from": 12.0 },
+            { "product": "Reception dress", "range": "Signature – Premium", "moq": 15, "from": 22.0 },
+            { "product": "Neck scarf", "range": "Essential – Signature", "moq": 25, "from": 5.0 }
+          ]
+        },
+        {
+          "name": "Guest & retail items",
+          "items": [
+            { "product": "Branded guest towel", "range": "Essential – Premium", "moq": 50, "from": 3.8 },
+            { "product": "Cosmetic pouch", "range": "Essential – Premium", "moq": 100, "from": 3.2 },
+            { "product": "Branded tote bag", "range": "Essential – Premium", "moq": 100, "from": 4.2 },
+            { "product": "Retail paper bag", "range": "Essential – Premium", "moq": 500, "from": 0.18 },
+            { "product": "Tissue box cover", "range": "Essential – Signature", "moq": 25, "from": 4.0 }
+          ]
+        },
+        {
+          "name": "Consumables & disposables",
+          "items": [
+            { "product": "Disposable cape — pack of 100", "range": "Essential", "moq": 10, "from": 4.5 },
+            { "product": "Disposable towel — pack of 100", "range": "Essential", "moq": 10, "from": 3.8 },
+            { "product": "Gloves — box of 100", "range": "Essential", "moq": 10, "from": 4.0 },
+            { "product": "Disposable slippers — pair", "range": "Essential", "moq": 200, "from": 0.35 },
+            { "product": "Disposable robe", "range": "Essential", "moq": 100, "from": 1.1 },
+            { "product": "Bed roll — non-woven", "range": "Essential", "moq": 20, "from": 4.5 },
+            { "product": "Disposable headband", "range": "Essential", "moq": 200, "from": 0.12 }
+          ]
+        },
+        {
+          "name": "Branding & marketing",
+          "items": [
+            { "product": "Salon signage", "range": "Essential – Premium", "moq": 1, "from": 35.0 },
+            { "product": "Price list board", "range": "Essential – Premium", "moq": 1, "from": 28.0 },
+            { "product": "Mirror / window decal", "range": "Essential – Signature", "moq": 5, "from": 7.0 },
+            { "product": "Appointment card", "range": "Essential – Signature", "moq": 500, "from": 0.05 },
+            { "product": "Loyalty card", "range": "Essential – Premium", "moq": 500, "from": 0.09 },
+            { "product": "Gift voucher — printed", "range": "Essential – Premium", "moq": 250, "from": 0.16 },
+            { "product": "Roll-up banner", "range": "Essential – Signature", "moq": 1, "from": 55.0 }
+          ]
+        }
+      ]
+    }
+  ]
+}

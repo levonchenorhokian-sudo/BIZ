@@ -8,3 +8,6 @@ graphify-out/
 
 # generated single-file preview (rebuild: python3 tools/build-preview.py)
 preview/
+
+# generated catalogue intermediate (rebuild: python3 tools/build-catalogue.py)
+catalogue/Merchandize-Catalogue.html
