@@ -1,121 +1,117 @@
-# Hosting karrgo.net
+# Hosting
 
 The site in `site/` is a plain static site — no build step, no server, no database.
-That means hosting is free and takes about 15 minutes.
+
+**Live now:** https://levonchenorhokian-sudo.github.io/BIZ/
+**Target domain:** karrgo.net (bought at GoDaddy — DNS not pointed yet)
 
 ---
 
-## Why not GitHub Pages
+## How it deploys
 
-This repo is **private**, and GitHub Pages on a private repo requires a paid GitHub
-plan. Making the repo public would publish `BUSINESS_VISION.md`, `catalogue/`
-pricing, and `MCP_SETUP.md` along with the site — so that route is not worth it.
+GitHub Pages, via `.github/workflows/deploy-pages.yml`.
 
-**Recommended: Netlify.** Free, deploys from a private repo, free HTTPS, and it can
-receive the inquiry form submissions (see "Make the form actually work" below).
-Cloudflare Pages is an equally good alternative but wants the domain's nameservers
-moved to Cloudflare; Netlify works with the DNS staying at GoDaddy.
+Every push to `claude/lebanon-uniform-strategy-zob4rv` that touches `site/`
+redeploys automatically. Nothing to run by hand.
 
----
+Two things worth knowing:
 
-## Step 1 — Deploy
+- **Pages had to be enabled manually.** The workflow token cannot create a Pages
+  site (`Resource not accessible by integration`), so Settings → Pages → Source →
+  *GitHub Actions* was a one-time human step. It is done.
+- **`.nojekyll` is required.** Jekyll strips directories beginning with `_`, which
+  would delete `_ds/` — the design system the pages load every colour and font
+  from — and serve an unstyled page. The file is committed and the workflow also
+  writes it into the artifact.
 
-`netlify.toml` in the repo root already tells Netlify to publish the `site/`
-folder with no build command, so there is nothing to configure.
+### Check a deploy
 
-1. Sign up at **netlify.com** (free — "Sign up with GitHub" is easiest).
-2. **Add new site → Import an existing project → GitHub**.
-3. Authorise Netlify, then pick **levonchenorhokian-sudo/BIZ**.
-4. Set **Branch to deploy** to `claude/lebanon-uniform-strategy-zob4rv`
-   (that is currently this repo's default branch).
-5. Leave build command empty and publish directory as `site` — `netlify.toml`
-   sets both. Click **Deploy**.
-
-You get a temporary URL like `random-name-1234.netlify.app`. **Open it and confirm
-the site loads** before touching DNS.
-
-> No-git alternative: download the `site/` folder and drag it onto
-> **app.netlify.com/drop**. Instant hosting, but you must re-drag after every
-> change — the git route redeploys automatically on each push.
+Actions tab → "Deploy site to GitHub Pages". Green means live within a minute.
 
 ---
 
-## Step 2 — Point karrgo.net at it
+## Pointing karrgo.net at it
 
-In Netlify: **Domain management → Add a domain → `karrgo.net`**. Netlify then shows
-you the exact DNS records to create. Use what Netlify shows — the values below are
-the current standard ones, but confirm against the dashboard.
+**Do the DNS first, then the custom domain.** Adding the domain to Pages before DNS
+resolves makes the site unreachable — the `github.io` URL starts redirecting to a
+domain that does not answer yet.
 
-Then in **GoDaddy → My Products → Domains → karrgo.net → DNS → Manage DNS**:
+### Step 1 — GoDaddy DNS
 
-| Action | Type | Name | Value | TTL |
-| --- | --- | --- | --- | --- |
-| Edit or add | `A` | `@` | `75.2.60.5` | 600 |
-| Edit or add | `CNAME` | `www` | `your-site-name.netlify.app` | 600 |
+**GoDaddy → My Products → karrgo.net → DNS → Manage DNS.** Delete the parking
+records GoDaddy ships with (an `A` on `@`, usually a `CNAME` on `www`), then add:
 
-- **Delete GoDaddy's parking records first.** A fresh domain ships with an `A` record
-  on `@` pointing at a GoDaddy parking page and often a `CNAME` on `www`. Remove or
-  overwrite both, or the domain will keep showing the parking page.
-- Leave any `MX` records alone if you set up email (see below).
+| Type | Name | Value | TTL |
+| --- | --- | --- | --- |
+| `A` | `@` | `185.199.108.153` | 600 |
+| `A` | `@` | `185.199.109.153` | 600 |
+| `A` | `@` | `185.199.110.153` | 600 |
+| `A` | `@` | `185.199.111.153` | 600 |
+| `CNAME` | `www` | `levonchenorhokian-sudo.github.io` | 600 |
 
-DNS usually propagates in 10–30 minutes, occasionally a few hours.
+All four `A` records are needed — they are GitHub's Pages load balancers.
+Leave any `MX` records alone if you set up email.
 
-## Step 3 — HTTPS
-
-Once DNS resolves, Netlify issues a free Let's Encrypt certificate automatically
-(**Domain management → HTTPS → Verify DNS configuration**). Then turn on
-**Force HTTPS**. Don't buy an SSL certificate from GoDaddy — you don't need one.
-
----
-
-## Before you go live
-
-### The brand does not match the domain
-`site/` is currently the **Merchandize** build. The domain is **karrgo.net**. The
-header, the footer and `inquiries@merchandize.com` all still say Merchandize.
-
-The Karrgo two-page build is in git history at **`9e93f7f`** (it also adds a
-products page), but its 23 product photos were stripped from that export and were
-never supplied, so its catalogue cards render empty. Decide which build ships
-before pointing DNS.
-
-### The contact email needs to exist
-The site tells visitors to email `inquiries@merchandize.com`. On karrgo.net you want
-something like `inquiries@karrgo.net`, and **the mailbox has to actually exist** —
-buying the domain does not create email. Free/cheap options:
-
-- **Zoho Mail** — free tier for one custom-domain mailbox
-- **Google Workspace** — paid, ~$6/user/month
-- **GoDaddy email** — they will upsell this at checkout; not required
-
-Whichever you pick, it adds `MX` records at GoDaddy. Those are separate from the
-`A`/`CNAME` records above and do not conflict.
-
-### Make the form actually work
-Right now submitting the inquiry form opens the visitor's own mail client via
-`mailto:` — so if they have no mail client configured, the inquiry is simply lost,
-and attached reference images never make it.
-
-Netlify Forms fixes this for free: add `netlify` to the `<form>` tag and
-submissions land in the Netlify dashboard with email notifications. Worth doing
-before you drive any traffic.
-
-### Other pre-launch items
-- The hero claims **"Lebanon's number one uniform provider"** — an unsubstantiated
-  superlative for a business that has not launched. Replace it.
-- The inquiry dropdowns (`garmentTypes`, `fabrics`, `colorOptions`,
-  `brandingMethods`) are **empty strings**, so those selects render with no options.
-- The catalogue PDF is still branded Merchandize.
-
----
-
-## After it is live
-
-Pushing to the deploy branch redeploys automatically — no manual step.
-
-Quick check that everything resolved:
+Propagation is usually 10–30 minutes. Check with:
 
 ```sh
-curl -sI https://karrgo.net | head -1        # expect HTTP/2 200
-curl -sI http://karrgo.net | head -1         # expect a 301 to https
+dig +short karrgo.net
+dig +short www.karrgo.net
 ```
+
+### Step 2 — Tell Pages about the domain
+
+Add a `CNAME` file containing `karrgo.net` to `site/`, or set it in
+Settings → Pages → Custom domain. Then tick **Enforce HTTPS** once the
+certificate is issued (automatic, free, a few minutes).
+
+Do **not** buy an SSL certificate from GoDaddy. You do not need one.
+
+---
+
+## Before you send anyone the link
+
+### The brand does not match the domain
+`site/` is the **Merchandize** build; the domain is **karrgo.net**. The header,
+footer and `inquiries@merchandize.com` all say Merchandize.
+
+The Karrgo two-page build (adds a products page) is in history at **`9e93f7f`**,
+but the 23 product photos were stripped from that export and never supplied, so
+its catalogue cards render empty. Decide which build ships.
+
+### The contact email does not exist
+The site tells visitors to email an address that has no mailbox behind it. Buying a
+domain does not create email. Zoho Mail has a free single-mailbox tier; Google
+Workspace is about $6/user/month.
+
+### The form loses inquiries
+Submitting opens the visitor's own mail client via `mailto:`. If they have no mail
+client configured, the inquiry is silently lost, and attached reference images never
+send. GitHub Pages cannot process forms — it serves static files only. Options:
+
+- **Formspree** / **Basin** — free tiers, works on Pages, a one-line form change
+- **Netlify** instead of Pages — free form handling built in (see below)
+
+### Other gaps
+- The hero claims **"Lebanon's number one uniform provider"** — an unsubstantiated
+  superlative for a business that has not launched.
+- The inquiry dropdowns (`garmentTypes`, `fabrics`, `colorOptions`,
+  `brandingMethods`) are empty strings, so those selects have no options.
+
+---
+
+## Repo visibility
+
+Pages on a **private** repo needs a paid GitHub plan, so this repo was made
+**public** to host for free. That publishes everything in it, not just the site —
+including `BUSINESS_VISION.md`, `catalogue/catalogue.data.json` (pricing) and
+`MCP_SETUP.md`.
+
+If that is not wanted, the fix is to move `site/` into its own public repo and set
+this one back to private.
+
+## Alternative: Netlify
+
+`netlify.toml` is still in the repo, so Netlify remains a drop-in alternative. It
+deploys from a **private** repo on the free tier and handles forms — the two things
+Pages cannot do. Import the repo at netlify.com and point DNS at Netlify instead.
