@@ -1,0 +1,51 @@
+name: Deploy site to GitHub Pages
+
+# The site is plain static files in site/ — nothing to build, just upload.
+# configure-pages with enablement:true turns Pages on for the repo the first
+# time this runs, so no manual setup in Settings is required.
+
+on:
+  push:
+    branches: [claude/lebanon-uniform-strategy-zob4rv]
+    paths:
+      - "site/**"
+      - ".github/workflows/deploy-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once; let a newer push supersede a queued one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      # Jekyll would otherwise ignore files and folders beginning with _ ,
+      # which would drop the _ds/ design-system directory the pages rely on.
+      - name: Disable Jekyll processing
+        run: touch site/.nojekyll
+
+      - name: Upload site/
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy
+        id: deploy
+        uses: actions/deploy-pages@v4
