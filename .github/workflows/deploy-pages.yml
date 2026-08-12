@@ -1,8 +1,11 @@
 name: Deploy site to GitHub Pages
 
 # The site is plain static files in site/ — nothing to build, just upload.
-# configure-pages with enablement:true turns Pages on for the repo the first
-# time this runs, so no manual setup in Settings is required.
+#
+# One-time prerequisite: Settings -> Pages -> Build and deployment -> Source
+# must be set to "GitHub Actions". The workflow token cannot create the Pages
+# site itself (the API returns "Resource not accessible by integration"), so
+# enabling it is a manual step. After that this workflow needs no attention.
 
 on:
   push:
@@ -33,8 +36,6 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       # Jekyll would otherwise ignore files and folders beginning with _ ,
       # which would drop the _ds/ design-system directory the pages rely on.
