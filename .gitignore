@@ -1,3 +1,8 @@
+# Node — the hosting platform runs npm install itself; never commit or upload these
+node_modules/
+npm-debug.log*
+.npm/
+
 # graphify generated knowledge-graph output (regenerated locally / on commit)
 graphify-out/
 
