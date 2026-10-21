@@ -6,6 +6,12 @@ name: Deploy site to GitHub Pages
 # must be set to "GitHub Actions". The workflow token cannot create the Pages
 # site itself (the API returns "Resource not accessible by integration"), so
 # enabling it is a manual step. After that this workflow needs no attention.
+#
+# Custom domain: set it in Settings -> Pages -> Custom domain. Committing a
+# CNAME file does NOT register the domain when the source is GitHub Actions —
+# that mechanism only applies to branch-based publishing. A domain saved in
+# Settings also only takes effect once a deployment runs afterwards, so re-run
+# this workflow after changing it.
 
 on:
   push:
