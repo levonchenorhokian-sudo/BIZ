@@ -57,12 +57,15 @@ def patch_page(p: Path) -> list[str]:
         else:
             done.append("! support.js tag not found — React NOT injected")
 
-    # 2. cross-page links
+    # 2. cross-page links. Matched with a regex rather than a literal swap so a
+    #    link carrying a #fragment or ?query ("Uniform Inquiry.dc.html#build")
+    #    is rewritten too — a literal swap silently leaves those broken.
     for old, new in RENAMES.items():
-        for quoted in (f'"{old}"', f'"{old.replace(" ", "%20")}"'):
-            if quoted in src:
-                src = src.replace(quoted, f'"{new}"')
-                done.append(f"link {old} -> {new}")
+        for variant in (old, old.replace(" ", "%20")):
+            pat = re.compile(r'(["\'])' + re.escape(variant) + r'((?:[#?][^"\']*)?)\1')
+            src, n = pat.subn(lambda m: f"{m.group(1)}{new}{m.group(2)}{m.group(1)}", src)
+            if n:
+                done.append(f"link {old} -> {new} ({n})")
 
     if src != original:
         p.write_text(src, encoding="utf-8")
