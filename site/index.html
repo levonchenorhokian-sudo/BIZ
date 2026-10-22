@@ -23,6 +23,92 @@ a { color: var(--color-accent-700); text-decoration: none; }
 a:hover { color: var(--color-accent); }
 .btn-primary, .btn-primary:hover, .btn-primary:active,
 .nav a.btn-primary, .nav a.btn-primary:hover { color: var(--color-bg); }
+
+/* How we work — a drafting ruler marking five stops.
+   Wide: the ruler lies horizontally, one column per step.
+   Narrow: the same ruler stands up and runs down the left edge, so the
+   sequence still reads as one continuous measure instead of breaking into
+   disconnected stubs across a two-column grid. */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: calc(1.5 * var(--leading)) 0;
+  margin-top: calc(3 * var(--leading));
+}
+.process-step { position: relative; }
+.process-num {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+  margin-bottom: 2px;
+  font-variant-numeric: tabular-nums;
+}
+.process-name {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: clamp(17px, 1.9vw, 23px);
+  line-height: var(--leading);
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  padding-right: var(--space-6);
+}
+.process-stop { width: 1px; height: 18px; margin-top: 8px; background: var(--color-accent); }
+.process-rule {
+  height: 15px;
+  border-top: 1px solid var(--color-text);
+  background-image:
+    linear-gradient(to right, var(--color-text) 0 1px, transparent 1px),
+    repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);
+  background-size: 100% 15px, 100% 5px;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 640px) {
+  .process-steps {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: calc(1.5 * var(--leading));
+  }
+  /* Each step becomes a row: the ruler is a vertical spine on the left,
+     its tick reaching out to the number and label on one line. */
+  .process-step {
+    display: grid;
+    grid-template-columns: 15px 14px auto 1fr;
+    align-items: start;
+    column-gap: 10px;
+    min-height: 48px;
+  }
+  .process-step:last-child { min-height: 0; }
+  /* The spine: same tick pattern, turned through 90 degrees. */
+  .process-rule {
+    grid-column: 1;
+    grid-row: 1;
+    width: 15px;
+    height: 100%;
+    min-height: 48px;
+    border-top: 0;
+    border-left: 1px solid var(--color-text);
+    background-image:
+      linear-gradient(to bottom, var(--color-text) 0 1px, transparent 1px),
+      repeating-linear-gradient(to bottom, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);
+    background-size: 15px 100%, 5px 100%;
+  }
+  .process-step:last-child .process-rule { min-height: 20px; height: 20px; }
+  /* The stop turns into the horizontal tick that points at the label. */
+  .process-stop {
+    grid-column: 2;
+    grid-row: 1;
+    width: 14px;
+    height: 1px;
+    margin-top: 9px;
+  }
+  .process-num { grid-column: 3; grid-row: 1; margin-bottom: 0; padding-top: 4px; }
+  .process-name { grid-column: 4; grid-row: 1; padding-right: 0; }
+}
 </style>
 </helmet>
 
@@ -78,31 +164,36 @@ a:hover { color: var(--color-accent); }
 
     <section id="process" style="padding:0 0 calc(2.5 * var(--leading))">
       <span style="display:block;font-size:13px;line-height:var(--half);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;color:var(--color-accent-700);margin:0 0 var(--half)">How we work</span>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:calc(1.5 * var(--leading)) 0;margin-top:calc(3 * var(--leading))">
-        <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Consultation</span>
-          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
-          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+      <div class="process-steps">
+        <div class="process-step">
+          <span class="process-num">01</span>
+          <span class="process-name">Consultation</span>
+          <div class="process-stop"></div>
+          <div class="process-rule" aria-hidden="true"></div>
         </div>
-        <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Quotation</span>
-          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
-          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        <div class="process-step">
+          <span class="process-num">02</span>
+          <span class="process-name">Quotation</span>
+          <div class="process-stop"></div>
+          <div class="process-rule" aria-hidden="true"></div>
         </div>
-        <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Sample</span>
-          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
-          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        <div class="process-step">
+          <span class="process-num">03</span>
+          <span class="process-name">Sample</span>
+          <div class="process-stop"></div>
+          <div class="process-rule" aria-hidden="true"></div>
         </div>
-        <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Production</span>
-          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
-          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        <div class="process-step">
+          <span class="process-num">04</span>
+          <span class="process-name">Production</span>
+          <div class="process-stop"></div>
+          <div class="process-rule" aria-hidden="true"></div>
         </div>
-        <div>
-          <span style="display:block;font-family:var(--font-heading);font-weight:600;font-size:clamp(17px,1.9vw,23px);line-height:var(--leading);letter-spacing:0.035em;text-transform:uppercase;padding-right:var(--space-6)">Delivery</span>
-          <div style="width:1px;height:18px;margin-top:8px;background:var(--color-accent)"></div>
-          <div aria-hidden="true" style="height:15px;border-top:1px solid var(--color-text);background-image:linear-gradient(to right, var(--color-text) 0 1px, transparent 1px), repeating-linear-gradient(to right, color-mix(in srgb, var(--color-text) 20%, transparent) 0 1px, transparent 1px 9px);background-size:100% 15px, 100% 5px;background-repeat:no-repeat"></div>
+        <div class="process-step">
+          <span class="process-num">05</span>
+          <span class="process-name">Delivery</span>
+          <div class="process-stop"></div>
+          <div class="process-rule" aria-hidden="true"></div>
         </div>
       </div>
     </section>
