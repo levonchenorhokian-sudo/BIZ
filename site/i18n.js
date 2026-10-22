@@ -285,6 +285,23 @@
   // of the page. The runtime re-renders the nav, so this is re-mounted from
   // the observer whenever it goes missing.
   var btn = null;
+
+  // Delegated on the document rather than bound to the button. The runtime can
+  // replace the nav with a copy of itself, and a cloned node does not carry
+  // event listeners — such a button would look right and do nothing. Catching
+  // the click on the way up means whichever copy is on screen still works.
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    while (t && t !== document) {
+      if (t.id === 'lang-toggle') {
+        e.preventDefault();
+        setLang(lang === 'ar' ? 'en' : 'ar');
+        return;
+      }
+      t = t.parentNode;
+    }
+  }, true);
+
   function mountButton() {
     var host = document.querySelector('nav.nav') || document.body;
     // A re-render can clone the nav along with an already-injected button,
@@ -303,7 +320,6 @@
       btn.id = 'lang-toggle';
       btn.setAttribute('data-i18n-skip', '');
       btn.setAttribute('aria-label', 'Switch language / تغيير اللغة');
-      btn.addEventListener('click', function () { setLang(lang === 'ar' ? 'en' : 'ar'); });
     }
     btn.textContent = lang === 'ar' ? 'EN' : 'عربي';
     host.appendChild(btn);
